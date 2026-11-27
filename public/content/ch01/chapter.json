@@ -1,0 +1,1713 @@
+{
+  "id": "ch01",
+  "number": 1,
+  "title": "Data Communication Network Basics",
+  "description": "Core concepts of communication systems, network topologies, LAN/MAN/WAN types, Huawei network devices (switches, routers, firewalls, WLAN), modular vs. fixed chassis architecture, and packet encapsulation flow.",
+  "pageRange": "1-45",
+  "pageCount": 45,
+  "sections": [
+    "Data Communication Network",
+    "Data Communication Network Devices",
+    "Data Communication Process",
+    "Network Engineering and Network Engineers"
+  ],
+  "lessons": [
+    {
+      "id": "ch01-l1",
+      "number": "1.1",
+      "title": "Communication & Tech Evolution",
+      "sectionTitle": "Data Communication Network",
+      "summary": "Learn the three core elements of a communication system and trace communication from ancient beacons to 5G/6G and IoE.",
+      "estimatedMinutes": 5,
+      "steps": [
+        {
+          "id": "ch01-p02",
+          "kind": "slide",
+          "pageNum": 2,
+          "pdfPages": [
+            2
+          ],
+          "slideNumber": 2,
+          "title": "Foreword",
+          "sectionTitle": "Overview",
+          "breadcrumbs": [],
+          "slideBullets": [
+            {
+              "level": 0,
+              "text": "From the very origins and subsequent development of human society, communication has remained a constant companion. Since the 1970s and 1980s, human society has entered the information age. For those of us living in this era, the necessity of communication is beyond question."
+            },
+            {
+              "level": 0,
+              "text": "In this course, communication refers to the transmission of information through a data communication network."
+            },
+            {
+              "level": 0,
+              "text": "This course introduces the concepts of communication and data communication networks, network types and typical topologies, network devices and their functions, and the process of information transmission. It also provides a brief introduction to network engineering and the role of network engineers."
+            }
+          ],
+          "diagram": null,
+          "notes": [],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p03",
+          "kind": "slide",
+          "pageNum": 3,
+          "pdfPages": [
+            3
+          ],
+          "slideNumber": 3,
+          "title": "Objectives",
+          "sectionTitle": "Overview",
+          "breadcrumbs": [],
+          "slideBullets": [
+            {
+              "level": 0,
+              "text": "Upon completion of this course, you will be able to:"
+            },
+            {
+              "level": 2,
+              "text": "Understand the concepts related to network communication and data communication networks."
+            },
+            {
+              "level": 2,
+              "text": "Understand different types of networks and topologies."
+            },
+            {
+              "level": 2,
+              "text": "Differentiate network devices of different types and understand their basic functions."
+            },
+            {
+              "level": 2,
+              "text": "Describe the information transfer process."
+            },
+            {
+              "level": 2,
+              "text": "Understand the concepts related to network engineering and network engineers."
+            }
+          ],
+          "diagram": null,
+          "notes": [],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p05",
+          "kind": "slide",
+          "pageNum": 5,
+          "pdfPages": [
+            5
+          ],
+          "slideNumber": 5,
+          "title": "Communication",
+          "sectionTitle": "Data Communication Network",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-05.webp",
+            "width": 1157,
+            "height": 503,
+            "altText": "The essence of communication lies in the transmission and exchange of information between two or ⚫ more points—that is, the conveyance and interaction of information among people, between people and objects, and among objects, facilitated through certain media and actions. Three elements of a communication system Electrical signals Audio signals Audio signals • Source: device that sends information, such as a user's computer or mobile phone. Channel: Telephone line • Channel: medium through which information is Source: User A Destination: User B transmitted, which can be a physical medium such Audio transmission between users as cables or optical fibers, or a wireless medium Audio signals are converted into electrical signals such as radio waves. at one end, transmitted through a telephone line, • Destination: device that receives information, that and restored to audio signals at the peer end. is, the receive device."
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "In addition to the communication system, communication has the following key elements:"
+            },
+            {
+              "level": 1,
+              "text": "Information: content to be transmitted, which can be in any form, such as voice, text, graphics, and data."
+            },
+            {
+              "level": 1,
+              "text": "Communication protocol: rules (such as language, encoding mode, and communication standard) agreed by both parties to ensure that information can be correctly encoded, transmitted, and decoded."
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p06",
+          "kind": "slide",
+          "pageNum": 6,
+          "pdfPages": [
+            6,
+            7
+          ],
+          "slideNumber": 6,
+          "title": "Development of Communication Technologies",
+          "sectionTitle": "Data Communication Network",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-06.webp",
+            "width": 1170,
+            "height": 513,
+            "altText": "Internet of Everything (IoE) era 6G 3G to 4G 5G Information era Intelligent Mobile Connectivity Electrical era connectivity of broadband of everything Mobile everything Computer Ancient times communications network Telegraph Radio (1G to 2G) Visual and (ARPANET) Popularization of Postal auditory signals Telephone the Internet system (Beacon fires, drumbeats) Around Around 1830s 1870s 1890s 1960s to 1970s 1980s to 1990s 2000s Late 2010s Future 3000 BCE 500 BCE"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "Ancient times: In this era, communication relied entirely on the most basic natural media, human power, and animal power."
+            },
+            {
+              "level": 1,
+              "text": "Visual and auditory communication: such as beacon towers, smoke signals, drum beats, and horns. These methods conveyed extremely limited information (usually prearranged signals), covered short distances, and were easily affected by weather and terrain."
+            },
+            {
+              "level": 1,
+              "text": "Postal communication: Post stations and postal systems were established, and letters were transported by people and horses. This allowed for the transmission of larger amounts of information, but the speed was extremely slow, often taking days or even months."
+            },
+            {
+              "level": 0,
+              "text": "Electrical era: From the mid-19th century to the early 20th century, the invention and application of electricity completely transformed communication, allowing information to travel at the speed of light for the first time."
+            },
+            {
+              "level": 1,
+              "text": "Telegraph (1830s–1840s): For the first time, people were able to communicate instantaneously over long distances (across continents or oceans). Information was transmitted through electrical wires."
+            },
+            {
+              "level": 1,
+              "text": "Telephone (1870s): Real-time, two-way voice communication was realized, making communication more natural and direct."
+            },
+            {
+              "level": 1,
+              "text": "Radio (1890s): Radio freed communication from the constraints of physical lines, laying the foundation for mobile communication and broadcasting. The subsequent development of AM/FM radio and television became the dominant mass media of the 20th century."
+            },
+            {
+              "level": 0,
+              "text": "Information era: From the mid-20th century to the present, the invention of transistors, integrated circuits, and computer technologies has propelled communication into a new era of digitalization and networking."
+            },
+            {
+              "level": 1,
+              "text": "Computers and the Internet (1960s–1990s): The birth of the Advanced Research Projects Agency Network (ARPANET) and the adoption of Transmission Control Protocol/Internet Protocol (TCP/IP) marked the beginning of the Internet era. Communication expanded beyond human-to-human, evolving into machine-to-machine and network-to-network interactions."
+            },
+            {
+              "level": 1,
+              "text": "Mobile communication (1980s–present):"
+            },
+            {
+              "level": 2,
+              "text": "1st generation (1G): analog voice communication, enabling people to make calls while moving."
+            },
+            {
+              "level": 2,
+              "text": "2nd generation (2G): digital voice communication, introducing Short Message Service (SMS)."
+            },
+            {
+              "level": 2,
+              "text": "3rd generation (3G): mobile Internet access, enabling users to browse web pages and send and receive emails."
+            },
+            {
+              "level": 2,
+              "text": "4th generation (4G): the true era of mobile broadband, with explosive growth in applications such as smooth HD video, online gaming, and mobile payment."
+            },
+            {
+              "level": 2,
+              "text": "5th generation (5G): ultra-high speed, ultra-low latency, and massive connectivity. Beyond human communication, it aims to empower vertical industries such as the Internet of Things (IoT), autonomous driving, telemedicine, and industrial automation."
+            },
+            {
+              "level": 2,
+              "text": "1G/2G/3G/4G/5G: 1st/2nd/3rd/4th/5th-Generation Mobile Communication Technology"
+            },
+            {
+              "level": 0,
+              "text": "The era of Internet of Everything (IoE): Communication technologies continue to accelerate in development."
+            },
+            {
+              "level": 1,
+              "text": "Deepening of 5G and exploration of 6G: Enhanced versions such as 5G-A/5.5G will further improve performance. 6G is expected to be commercially deployed around 2030, aiming to support holographic communication, sensory interconnection, and digital twins, realizing \"intelligent connectivity of everything.\""
+            },
+            {
+              "level": 1,
+              "text": "Integration of IoT and Artificial Intelligence (AI): Communication will expand from humans to all things in the world. AI will empower communication networks with intelligent resource scheduling, fault prediction, and security protection, making networks more efficient and reliable."
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-q1",
+          "kind": "challenge",
+          "sectionTitle": "Data Communication Network",
+          "challenge": {
+            "id": "ch01-q1",
+            "type": "order-steps",
+            "prompt": "Arrange these communication milestones in chronological order from oldest to newest (Slide 6):",
+            "items": [
+              "Visual and auditory signals (Beacon fires, ~3000 BCE)",
+              "Telegraph over electrical wires (1830s)",
+              "ARPANET & computer networks (1960s–1970s)",
+              "5G connectivity of everything (Late 2010s)"
+            ],
+            "correctOrder": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "explanation": "Communication progressed from Ancient times (~3000 BCE beacons) -> Electrical era (1830s telegraph) -> Information era (1960s–1970s ARPANET) -> IoE era (late 2010s 5G and beyond)."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch01-l2",
+      "number": "1.2",
+      "title": "Networks & Topologies",
+      "sectionTitle": "Data Communication Network",
+      "summary": "Understand network communication examples, datacom network components, and compare bus, star, ring, tree, and mesh topologies.",
+      "estimatedMinutes": 5,
+      "steps": [
+        {
+          "id": "ch01-p08",
+          "kind": "slide",
+          "pageNum": 8,
+          "pdfPages": [
+            8
+          ],
+          "slideNumber": 7,
+          "title": "Network Communication",
+          "sectionTitle": "Data Communication Network",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-08.webp",
+            "width": 1155,
+            "height": 530,
+            "altText": "Network communication refers to the transmission of information between terminals through a data ⚫ communication network. Examples of network communication: ⚫ Data Router A. Files are transferred between two computers (terminals) through a network cable. Data ... Data B. Files are transferred among multiple computers (terminals) through network devices (such as routers). C. Files are downloaded to a computer (terminal) through the Internet."
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "Examples of network communication:"
+            },
+            {
+              "level": 1,
+              "text": "A. When two computers are connected by a single network cable, they form the simplest data communication network."
+            },
+            {
+              "level": 1,
+              "text": "B. A small data communication network can be built with one network device (such as a router or switch) and multiple computers. On such a network, files can be freely transferred between any two computers through the relay of the network device."
+            },
+            {
+              "level": 1,
+              "text": "C. When a computer wants to obtain a file from a website, it must first connect to the Internet before it can download."
+            },
+            {
+              "level": 0,
+              "text": "The Internet is currently the largest computer network (that is, data communication network) in the world. Its predecessor, ARPANET, was born in 1969. The wide popularization and application of the Internet is one of the signs of entering the information age."
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p09",
+          "kind": "slide",
+          "pageNum": 9,
+          "pdfPages": [
+            9
+          ],
+          "slideNumber": 8,
+          "title": "Data Communication Network",
+          "sectionTitle": "Data Communication Network",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-09.webp",
+            "width": 1139,
+            "height": 556,
+            "altText": "Core equipment room Data communication network: Firewall ⚫ WAC Log system NMS platform A data communication network consists of Application server routers, switches, firewalls, wireless access controllers (WACs), wireless access points Switch (APs), personal computers (PCs), network printers, servers, and the like. Switch Functions: ⚫ Its basic function is to implement data ... ... communication. Switch Office area 1 Office area 2 AP"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "Data communication network will be referred to as datacom network in this course."
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p10",
+          "kind": "slide",
+          "pageNum": 10,
+          "pdfPages": [
+            10
+          ],
+          "slideNumber": 9,
+          "title": "Network Topology",
+          "sectionTitle": "Data Communication Network",
+          "breadcrumbs": [],
+          "slideBullets": [
+            {
+              "level": 0,
+              "text": "A network topology is a structured layout of how various network devices (such as computers, routers,"
+            }
+          ],
+          "diagram": {
+            "src": "./content/ch01/slide-10.webp",
+            "width": 1116,
+            "height": 491,
+            "altText": "and switches) are connected through transmission media (such as twisted pairs and optical fibers). A network topology diagram describes the physical or logical structure of a network, which is essential in network engineering. ... ..."
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "Drawing network topologies: It is very important to master professional skills for drawing network topology diagrams, which requires a lot of practice."
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p11",
+          "kind": "slide",
+          "pageNum": 11,
+          "pdfPages": [
+            11,
+            12
+          ],
+          "slideNumber": 10,
+          "title": "Network Topology Types",
+          "sectionTitle": "Data Communication Network",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-11.webp",
+            "width": 1156,
+            "height": 522,
+            "altText": "Networks can be classified into bus, star, ring, tree, full-mesh, and partial-mesh networks based on the ⚫ network topology. In real-world networks, different topologies are often combined to strike a trade-off among cost, ⚫ performance, and reliability needs. Bus network Star network Ring network Combined network Tree network Full-mesh network Partial-mesh network"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "Bus network: All nodes are connected through a bus (such as a coaxial cable)."
+            },
+            {
+              "level": 1,
+              "text": "Advantage: Installation is easy with minimal cables required. Generally, a fault on a node does not affect the communication of the entire network."
+            },
+            {
+              "level": 1,
+              "text": "Disadvantage: The failure of the bus affects the communication of the entire network. Information sent by a node can be received by all other nodes, which is insecure."
+            },
+            {
+              "level": 0,
+              "text": "Star network: All nodes are connected through a central node."
+            },
+            {
+              "level": 1,
+              "text": "Advantage: New nodes can be easily added to the network. Communication data must be forwarded through the central node, facilitating network monitoring."
+            },
+            {
+              "level": 1,
+              "text": "Disadvantage: The failure of the central node affects the communication of the entire network."
+            },
+            {
+              "level": 0,
+              "text": "Ring network: All nodes are connected to form a closed ring."
+            },
+            {
+              "level": 1,
+              "text": "Advantage: Fewer cables are required."
+            },
+            {
+              "level": 1,
+              "text": "Disadvantage: Adding a new node is inconvenient. You need to break the original ring before inserting the new node to form a new ring."
+            },
+            {
+              "level": 0,
+              "text": "Tree network: actually a hierarchical star topology."
+            },
+            {
+              "level": 1,
+              "text": "Advantage: Multiple star networks can be quickly connected, facilitating network expansion."
+            },
+            {
+              "level": 1,
+              "text": "Disadvantage: The higher the node, the more severe network issues caused by the node's failure."
+            },
+            {
+              "level": 0,
+              "text": "Full-mesh network: All nodes are interconnected through cables."
+            },
+            {
+              "level": 1,
+              "text": "Advantage: It features high reliability and communication efficiency."
+            },
+            {
+              "level": 1,
+              "text": "Disadvantage: Each node requires a large number of physical ports and cables for network connections. It is costly and difficult to scale."
+            },
+            {
+              "level": 0,
+              "text": "Partial-mesh network: Only key nodes are interconnected."
+            },
+            {
+              "level": 1,
+              "text": "Advantage: The cost is lower than that of a full-mesh topology."
+            },
+            {
+              "level": 1,
+              "text": "Disadvantage: The reliability is lower than that of a full-mesh topology."
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-q2",
+          "kind": "challenge",
+          "sectionTitle": "Data Communication Network",
+          "challenge": {
+            "id": "ch01-q2",
+            "type": "match-pairs",
+            "prompt": "Match each network topology to its defining Huawei textbook characteristic (Slide 10):",
+            "pairs": [
+              {
+                "left": "Bus network",
+                "right": "Failure of the shared bus affects the entire network; insecure"
+              },
+              {
+                "left": "Star network",
+                "right": "Easy to add nodes & monitor, but central node is a single point of failure"
+              },
+              {
+                "left": "Ring network",
+                "right": "Uses fewer cables, but adding a node requires breaking the ring"
+              },
+              {
+                "left": "Full-mesh network",
+                "right": "Highest reliability & efficiency, but costly and hard to scale"
+              }
+            ],
+            "explanation": "Real-world networks combine topologies to balance cost, performance, and reliability. Star is easy to expand; Full-mesh maximizes redundancy at high port/cable cost."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ch01-l3",
+      "number": "1.3",
+      "title": "LAN, MAN, WAN & Enterprise",
+      "sectionTitle": "Data Communication Network",
+      "summary": "Classify networks by geographical coverage (LAN, MAN, WAN) and by operation entity (Enterprise vs. Carrier networks).",
+      "estimatedMinutes": 5,
+      "steps": [
+        {
+          "id": "ch01-p13",
+          "kind": "slide",
+          "pageNum": 13,
+          "pdfPages": [
+            13
+          ],
+          "slideNumber": 11,
+          "title": "Network Types",
+          "sectionTitle": "Data Communication Network",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-13.webp",
+            "width": 1079,
+            "height": 401,
+            "altText": "A datacom network can be classified into different types based on different classification modes. ⚫ There are two common classification modes. ⚫ By geographical coverage By operation entity • Local Area Network (LAN) • Enterprise network • Metropolitan Area Network (MAN) • Carrier network • Wide Area Network (WAN)"
+          },
+          "notes": [],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p14",
+          "kind": "slide",
+          "pageNum": 14,
+          "pdfPages": [
+            14
+          ],
+          "slideNumber": 12,
+          "title": "LAN, MAN, and WAN",
+          "sectionTitle": "Data Communication Network",
+          "breadcrumbs": [],
+          "slideBullets": [
+            {
+              "level": 0,
+              "text": "Datacom networks can be classified into LANs, MANs, and WANs based on geographical coverage."
+            }
+          ],
+          "diagram": {
+            "src": "./content/ch01/slide-14.webp",
+            "width": 1119,
+            "height": 469,
+            "altText": "LAN MAN WAN • A LAN is a network that consists of • A WAN generally covers a large • A MAN can be regarded as a large-scale computers, servers, and network geographical area ranging from tens LAN, but requires higher costs and devices in a geographic area. The of to thousands of kilometers. It can provides higher transmission rates than a coverage of a LAN is generally connect networks of multiple cities LAN. It improves the transmission media within several kilometers. or even networks of countries (as an used in a LAN and expands its access international large-scale network) scope, which can encompass a university • Its primary function is to connect and provide long-distance campus or a city. several terminal computers that are communication. • Its main function is to connect hosts, distributed relatively close together, • It is mainly used to connect several such as within a single household, databases, and LANs at different locations one or more buildings, or a campus. LANs or MANs that are distributed within the same city. far away (for example, across cities • Technologies used: Ethernet, Wi-Fi, • Technologies used: similar to LAN or countries). and so on. technologies, such"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "WiMAX: Worldwide Interoperability for Microwave Access"
+            },
+            {
+              "level": 0,
+              "text": "PPP: Point-to-Point Protocol"
+            },
+            {
+              "level": 0,
+              "text": "MPLS: Multiprotocol Label Switching"
+            },
+            {
+              "level": 0,
+              "text": "SRv6: Segment Routing over IPv6"
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p15",
+          "kind": "slide",
+          "pageNum": 15,
+          "pdfPages": [
+            15
+          ],
+          "slideNumber": 13,
+          "title": "LAN, MAN, and WAN in the Education Industry",
+          "sectionTitle": "Data Communication Network",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-15.webp",
+            "width": 1131,
+            "height": 559,
+            "altText": "Provincial Municipal District/County District/County Provincial Municipal education education education bureau bureau bureau MAN core MAN core MAN core LAN of a LAN of a LAN of a middle school middle school primary school LAN of a college LAN of a college LAN of a college or university or university or university"
+          },
+          "notes": [],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p16",
+          "kind": "slide",
+          "pageNum": 16,
+          "pdfPages": [
+            16
+          ],
+          "slideNumber": 14,
+          "title": "Enterprise Network and Carrier Network",
+          "sectionTitle": "Data Communication Network",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-16.webp",
+            "width": 1140,
+            "height": 494,
+            "altText": "Datacom networks can be classified into enterprise networks and carrier networks by operation entity. ⚫ Enterprise network Carrier network • An enterprise network is a private network constructed and • A carrier network is a public network infrastructure maintained by a single organization (such as a company, constructed and operated by a telecom service provider, government agency, or school). It connects employees, aiming to offer internet access, voice communication, and devices, data centers, and branch offices to support daily data transfer services for external customers (individual office operations, production, and management needs. users and enterprises). • Technologies used: Ethernet-related technologies (such as • Technologies used: BGP, MPLS, 5G core network, and so on. VLAN and VPN), Wi-Fi, firewall technologies, and so on. • Typical scenarios: Internet backbone networks (cross-region • Typical scenarios: campus networks (such as office and cross-country connections), mobile communication buildings, factories, and school campuses), data center networks (4G/5G base stations and core networks), and networks, and enterprise-built backbone networks (WANs). enterprise priva"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "Note: Unless otherwise specified, the network described in this course refers to the enterprise network."
+            },
+            {
+              "level": 0,
+              "text": "VLAN: Virtual Local Area Network"
+            },
+            {
+              "level": 0,
+              "text": "VPN: Virtual Private Network"
+            },
+            {
+              "level": 0,
+              "text": "BGP: Border Gateway Protocol"
+            },
+            {
+              "level": 0,
+              "text": "SD-WAN: Software-Defined Wide Area Network"
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-q3",
+          "kind": "challenge",
+          "sectionTitle": "Data Communication Network",
+          "challenge": {
+            "id": "ch01-q3",
+            "type": "multiple-choice",
+            "prompt": "Which network type spans tens to thousands of kilometers to interconnect distant LANs or MANs using technologies such as PPP, MPLS, and SRv6?",
+            "options": [
+              "Local Area Network (LAN)",
+              "Metropolitan Area Network (MAN)",
+              "Wide Area Network (WAN)",
+              "Office Access Network"
+            ],
+            "correctIndex": 2,
+            "explanation": "A WAN covers tens to thousands of kilometers across cities or countries and relies on technologies like PPP, MPLS, and SRv6 (Slide 12)."
+          }
+        },
+        {
+          "id": "ch01-p17",
+          "kind": "slide",
+          "pageNum": 17,
+          "pdfPages": [
+            17
+          ],
+          "slideNumber": 15,
+          "title": "Enterprise Network in Office Scenarios",
+          "sectionTitle": "Data Communication Network",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-17.webp",
+            "width": 1052,
+            "height": 536,
+            "altText": "AP AP Open office Manager's area office AP AP Mobile Conference office area room AP AP Access Reception switch desk"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "An office network is a typical scenario of an enterprise network. It connects various network devices and terminals within the enterprise, enabling resource sharing and information exchange. It also provides a unified entry for employees to access internal resources and external network services."
+            }
+          ],
+          "vrpBlocks": []
+        }
+      ]
+    },
+    {
+      "id": "ch01-l4",
+      "number": "1.4",
+      "title": "Core Network Devices",
+      "sectionTitle": "Data Communication Network Devices",
+      "summary": "Master the roles of switches (MAC forwarding), routers (IP path selection), firewalls (egress security), and WLAN devices (Fat/Fit/Cloud APs & WAC).",
+      "estimatedMinutes": 6,
+      "steps": [
+        {
+          "id": "ch01-p19",
+          "kind": "slide",
+          "pageNum": 19,
+          "pdfPages": [
+            19
+          ],
+          "slideNumber": 17,
+          "title": "Network Devices",
+          "sectionTitle": "Data Communication Network Devices",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-19.webp",
+            "width": 1157,
+            "height": 544,
+            "altText": "A data communication network consists of a series of network infrastructure and terminals. The network ⚫ infrastructure mainly includes network devices such as switches, routers, and firewalls. These devices collaborate with each other on the data communication network to receive and forward data. Access switch Data center AP Open office equipment room area Server Access switch AP Conference Data center Switch room Access Core switch switch Reception AP Router desk WAC Firewall Campus equipment room Office campus network diagram"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "The figure shows a typical enterprise office campus network."
+            },
+            {
+              "level": 1,
+              "text": "In the campus equipment room, egress devices such as routers and firewalls are deployed to enable secure communication with external networks. At the same time, core campus devices such as core switches and WACs are also placed there to implement internal data interconnection across the entire campus network."
+            },
+            {
+              "level": 1,
+              "text": "Midsize and large enterprises often have independent data centers. Data center devices such as switches and servers are usually located in an independent data center equipment room and physically connected to the campus core, providing various application services and data storage for internal or external users."
+            },
+            {
+              "level": 1,
+              "text": "On each office floor, an access switch can be installed to connect APs or wired terminals within that floor's office area for office network access. The APs then provide wireless signals to allow wireless terminals in the office area to access the network."
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p20",
+          "kind": "slide",
+          "pageNum": 20,
+          "pdfPages": [
+            20
+          ],
+          "slideNumber": 18,
+          "title": "Switch",
+          "sectionTitle": "Data Communication Network Devices",
+          "breadcrumbs": [],
+          "slideBullets": [
+            {
+              "level": 0,
+              "text": "A switch is a core device on a datacom network. It forwards data frames efficiently on a LAN to the destination device by identifying the destination MAC address in the data frames."
+            }
+          ],
+          "diagram": {
+            "src": "./content/ch01/slide-20.webp",
+            "width": 1156,
+            "height": 451,
+            "altText": "Switches can be classified into fixed and modular switches based on their functional modules and ⚫ composition. In the figure on the left, fixed switches are used as access switches on a campus network to connect user data to the network; a modular switch is used as the core switch on a campus network to aggregate traffic from all modules on the campus network for centralized forwarding. Router Core switch WAC Firewall Access switch AP AP Fixed switch Modular switch"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "Depending on the application scenario, switches can be classified into campus switches and data center switches. Data center switches connect to devices such as computing and storage devices in a data center to ensure high-speed, reliable, and accurate data forwarding. Data center switches can also be classified into fixed switches and modular switches."
+            },
+            {
+              "level": 0,
+              "text": "MAC: Medium Access Control"
+            }
+          ],
+          "vrpBlocks": [
+            {
+              "title": "Inspect Switch Hardware & Ports (VRP Preview)",
+              "viewLabel": "User View <HUAWEI>",
+              "commands": [
+                {
+                  "code": "<HUAWEI> display interface brief",
+                  "tokens": [
+                    {
+                      "token": "<HUAWEI>",
+                      "meaning": "User view prompt — allows status queries and diagnostic tools without modifying configuration."
+                    },
+                    {
+                      "token": "display",
+                      "meaning": "Huawei VRP query keyword used to inspect device state, tables, and counters."
+                    },
+                    {
+                      "token": "interface brief",
+                      "meaning": "Shows a concise summary of physical/link status and port speeds across switch interfaces."
+                    }
+                  ]
+                },
+                {
+                  "code": "<HUAWEI> display mac-address",
+                  "tokens": [
+                    {
+                      "token": "display",
+                      "meaning": "Queries operational state on the switch."
+                    },
+                    {
+                      "token": "mac-address",
+                      "meaning": "Displays the MAC address table that switches use to forward Ethernet frames on a LAN."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch01-p21",
+          "kind": "slide",
+          "pageNum": 21,
+          "pdfPages": [
+            21
+          ],
+          "slideNumber": 19,
+          "title": "Router",
+          "sectionTitle": "Data Communication Network Devices",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-21.webp",
+            "width": 1158,
+            "height": 537,
+            "altText": "A router can forward data packets in various network scenarios. It selects a proper path based on the ⚫ destination IP address of the received data packet and forwards the data packet to the next router or destination. Routers can be classified into backbone routers, metro routers, and access routers, depending on the ⚫ application scenario. The figure on the left is a typical application scenario of an access router. The access router is used as the egress device of a campus network to connect campus data to the WAN or Internet. Router Core switch WAC Firewall Access switch Access router Metro router AP AP"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "A router provides the following functions: routing table and routing information maintenance, route discovery and path selection, data forwarding, WAN access, network address translation, and specific security functions."
+            }
+          ],
+          "vrpBlocks": [
+            {
+              "title": "Inspect Router IP Routing Table (VRP Preview)",
+              "viewLabel": "User View <R1>",
+              "commands": [
+                {
+                  "code": "<R1> display ip routing-table",
+                  "tokens": [
+                    {
+                      "token": "<R1>",
+                      "meaning": "User view prompt on router R1."
+                    },
+                    {
+                      "token": "display",
+                      "meaning": "Queries current operational tables."
+                    },
+                    {
+                      "token": "ip routing-table",
+                      "meaning": "Lists known destination networks, masks, next hops, and outbound interfaces used for path selection."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch01-q4",
+          "kind": "challenge",
+          "sectionTitle": "Data Communication Network Devices",
+          "challenge": {
+            "id": "ch01-q4",
+            "type": "fill-blank",
+            "prompt": "Complete the core forwarding comparison between switches and routers (Slides 18–19):",
+            "template": "A switch forwards data frames on a LAN using the destination [0] address, whereas a router selects paths for data packets using the destination [1] address.",
+            "bank": [
+              "MAC",
+              "IP",
+              "port",
+              "VLAN"
+            ],
+            "correctTokens": [
+              "MAC",
+              "IP"
+            ],
+            "explanation": "Switches identify the destination MAC address inside data frames on a LAN; routers examine the destination IP address in data packets to select the next hop."
+          }
+        },
+        {
+          "id": "ch01-p22",
+          "kind": "slide",
+          "pageNum": 22,
+          "pdfPages": [
+            22
+          ],
+          "slideNumber": 20,
+          "title": "Firewall",
+          "sectionTitle": "Data Communication Network Devices",
+          "breadcrumbs": [],
+          "slideBullets": [
+            {
+              "level": 0,
+              "text": "A firewall is a network security device used to ensure secure communication between networks. It"
+            }
+          ],
+          "diagram": {
+            "src": "./content/ch01/slide-22.webp",
+            "width": 1160,
+            "height": 497,
+            "altText": "monitors, restricts, and modifies data flows passing through it to shield information, structure, and running status of the internal network from external network users, ensuring network security. The figure on the left is a typical firewall application scenario. Generally, the firewall is deployed at the ⚫ network egress to isolate the internal network from the external network, implementing secure Internet access for internal users and secure access for external users. Router Core switch WAC Firewall Access switch Firewall AP AP"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "The main functions of a firewall include isolating networks of different security levels, implementing access control between networks of different security levels, authenticating user identities, enabling remote access, providing data encryption and virtual private network (VPN) services, performing network address translation, and other security features."
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p23",
+          "kind": "slide",
+          "pageNum": 23,
+          "pdfPages": [
+            23,
+            24
+          ],
+          "slideNumber": 21,
+          "title": "Wireless Device",
+          "sectionTitle": "Data Communication Network Devices",
+          "breadcrumbs": [],
+          "slideBullets": [
+            {
+              "level": 0,
+              "text": "A wireless LAN (WLAN) is established using wireless technologies. It allows terminals to access the network using wireless signals for data transmission."
+            },
+            {
+              "level": 0,
+              "text": "Common wireless devices include Fat APs, Fit APs, and WACs, which can implement functions such as user access, authentication, and service forwarding. The figure on the left shows a typical Fit AP + WAC scenario. Router"
+            }
+          ],
+          "diagram": {
+            "src": "./content/ch01/slide-23.webp",
+            "width": 1119,
+            "height": 292,
+            "altText": "Core switch WAC Firewall Access switch AP AP AP WAC Wi-Fi signal"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "In a broad sense, a WLAN is a network that uses wireless signals such as radio waves, lasers, and infrared rays to replace the traditional media used for transmission on a wired LAN. The commonly known Wi-Fi refers to WLAN technology based on the IEEE 802.11 standard."
+            },
+            {
+              "level": 0,
+              "text": "Common WLAN devices include APs and WACs."
+            },
+            {
+              "level": 1,
+              "text": "AP:"
+            },
+            {
+              "level": 2,
+              "text": "Supports multiple working modes, such as Fat AP, Fit AP, and Cloud AP. You can flexibly switch between these modes based on the network plan."
+            },
+            {
+              "level": 2,
+              "text": "Fat AP: works independently and needs to be configured separately. It provides only basic functions and is cost-effective. Fat APs are suitable for home use."
+            },
+            {
+              "level": 2,
+              "text": "Fit AP: must be used together with a WAC, which manages and configures the Fit APs in a unified manner. Fit APs provide rich functions and are applicable to large and midsize enterprises."
+            },
+            {
+              "level": 2,
+              "text": "Cloud AP: must be used together with a cloud management platform, which manages and configures the Cloud APs in a unified manner. Cloud APs provide rich functions and are plug-and-play. They are applicable to small and midsize enterprises."
+            },
+            {
+              "level": 1,
+              "text": "WAC:"
+            },
+            {
+              "level": 2,
+              "text": "Typically located at the aggregation or core layer of a network, provides high-speed, secure, and reliable WLAN services."
+            },
+            {
+              "level": 2,
+              "text": "Provides a large capacity and high performance. It is highly reliable, easy to install and maintain, and features such advantages as flexible networking and energy conservation."
+            },
+            {
+              "level": 0,
+              "text": "Note: The Institute of Electrical and Electronics Engineers (IEEE) is an organization specialized in engineering and electronics."
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-q5",
+          "kind": "challenge",
+          "sectionTitle": "Data Communication Network Devices",
+          "challenge": {
+            "id": "ch01-q5",
+            "type": "multiple-choice",
+            "prompt": "Which Huawei AP working mode is managed centrally by a Wireless Access Controller (WAC) and suits midsize-to-large enterprises?",
+            "options": [
+              "Fat AP",
+              "Fit AP",
+              "Standalone Home AP",
+              "Passive Repeater"
+            ],
+            "correctIndex": 1,
+            "explanation": "A Fit AP must work together with a WAC for unified management and configuration, making it ideal for midsize and large enterprises. Fat APs work independently for home use (Slide 21)."
+          }
+        },
+        {
+          "id": "ch01-p25",
+          "kind": "slide",
+          "pageNum": 25,
+          "pdfPages": [
+            25
+          ],
+          "slideNumber": 22,
+          "title": "Physical Connection Diagram",
+          "sectionTitle": "Data Communication Network Devices",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-25.webp",
+            "width": 1150,
+            "height": 538,
+            "altText": "Network cable Router Core switch Router Core switch WAC Firewall Firewall WAC Access switch Access switch Access switch AP AP Simplified logical Physical connection AP AP network topology diagram"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "Modern network devices are no longer limited to a single function. For example, a switch integrates switching and routing functions, and a router integrates routing, security, and wireless functions. Therefore, when considering device selection, network construction, and data forwarding, it is necessary to understand the functions and features each type of device can provide, and to plan and deploy the network with a holistic view of service requirements."
+            }
+          ],
+          "vrpBlocks": []
+        }
+      ]
+    },
+    {
+      "id": "ch01-l5",
+      "number": "1.5",
+      "title": "Huawei Hardware & Data Flow",
+      "sectionTitle": "Data Communication Process",
+      "summary": "Explore modular (MPU/SFU/LPU) vs. fixed chassis hardware, then trace packet encapsulation from sender to receiver using the postal analogy.",
+      "estimatedMinutes": 6,
+      "steps": [
+        {
+          "id": "ch01-p26",
+          "kind": "slide",
+          "pageNum": 26,
+          "pdfPages": [
+            26
+          ],
+          "slideNumber": 23,
+          "title": "Composition of Network Devices",
+          "sectionTitle": "Data Communication Network Devices",
+          "breadcrumbs": [],
+          "slideBullets": [
+            {
+              "level": 0,
+              "text": "Switches, routers, and firewalls have similar structures and can be classified into modular and fixed devices based on functional modules. This course uses the modular switch CloudEngine S12700H-8 and fixed switch CloudEngine S5755-H24T4Y2CZ as examples to describe the composition of typical"
+            }
+          ],
+          "diagram": {
+            "src": "./content/ch01/slide-26.webp",
+            "width": 1042,
+            "height": 420,
+            "altText": "network devices. Modular switch Fixed switch CloudEngine S12700H-8 CloudEngine S5755-H24T4Y2CZ"
+          },
+          "notes": [],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p27",
+          "kind": "slide",
+          "pageNum": 27,
+          "pdfPages": [
+            27,
+            28
+          ],
+          "slideNumber": 24,
+          "title": "Chassis Structure of Modular Devices",
+          "sectionTitle": "Data Communication Network Devices",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-27.webp",
+            "width": 1156,
+            "height": 541,
+            "altText": "Modular devices use a modular architecture and provide different functions through different boards. They are ⚫ typically deployed at the core layer of a network and have high reliability. Based on their functions, modular devices support Main Processing Units (MPUs), Switch Fabric Units (SFUs), and ⚫ Line Processing Units (LPUs). Different device models can be equipped with other functional boards, such as Service Processing Units (SPUs) and Central Management Units (CMUs). MPU SFU LPU CloudEngine S12700H-8"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "Board functions:"
+            },
+            {
+              "level": 1,
+              "text": "MPU: a mandatory component that controls, manages, and monitors the system."
+            },
+            {
+              "level": 1,
+              "text": "SFU: a mandatory component that implements system control, monitoring, and data exchange."
+            },
+            {
+              "level": 1,
+              "text": "LPU: an optional component that processes data packets and manages traffic."
+            },
+            {
+              "level": 1,
+              "text": "SPU: an optional component that performs value-added service processing on the required data packets."
+            },
+            {
+              "level": 1,
+              "text": "CMU: an optional component that monitors the environment status and allows users to configure the ambient temperature threshold for monitoring."
+            },
+            {
+              "level": 0,
+              "text": "CloudEngine S12700H-8 chassis structure:"
+            },
+            {
+              "level": 1,
+              "text": "1. Chassis header"
+            },
+            {
+              "level": 1,
+              "text": "2. MPU"
+            },
+            {
+              "level": 1,
+              "text": "3. Cable manager: used to separate cables in different slots and facilitate cable routing."
+            },
+            {
+              "level": 1,
+              "text": "4. SFU"
+            },
+            {
+              "level": 1,
+              "text": "5. LPU"
+            },
+            {
+              "level": 1,
+              "text": "6. Four power modules (PWR)"
+            },
+            {
+              "level": 1,
+              "text": "7. CMU"
+            },
+            {
+              "level": 1,
+              "text": "8. Electrostatic Discharge (ESD) jack on the front side: a jack for the ESD wrist strap. The ESD function is available only when the device is properly grounded."
+            },
+            {
+              "level": 1,
+              "text": "9. Two fan modules"
+            },
+            {
+              "level": 1,
+              "text": "10. Ground point for a two-hole OT terminal, with a yellow grounding label attached"
+            }
+          ],
+          "vrpBlocks": [
+            {
+              "title": "Verify Modular Chassis Boards (MPU / SFU / LPU)",
+              "viewLabel": "User View <Core-Switch>",
+              "commands": [
+                {
+                  "code": "<Core-Switch> display device",
+                  "tokens": [
+                    {
+                      "token": "display",
+                      "meaning": "Queries hardware and software status."
+                    },
+                    {
+                      "token": "device",
+                      "meaning": "Lists installed MPU, SFU, LPU, SPU, power, and fan modules along with their slot status."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ch01-p29",
+          "kind": "slide",
+          "pageNum": 29,
+          "pdfPages": [
+            29
+          ],
+          "slideNumber": 25,
+          "title": "Chassis Structure of Fixed Devices",
+          "sectionTitle": "Data Communication Network Devices",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-29.webp",
+            "width": 1157,
+            "height": 500,
+            "altText": "Unlike modular devices, fixed devices use a fixed architecture. Their service modules are not independent boards, ⚫ but are integrated into a fixed chassis. They are typically deployed at the access layer of a network or on small enterprise networks, and have a fixed number of access ports. For example, S series Ethernet switches use a centralized hardware platform, which consists of the chassis, power ⚫ modules, fan modules, and Switch Control Unit (SCU). SCU Access ports CloudEngine S5755-H24T4Y2CZ"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "CloudEngine S5755-H24T4Y2CZ chassis structure:"
+            },
+            {
+              "level": 1,
+              "text": "1. One PNP button:"
+            },
+            {
+              "level": 2,
+              "text": "Holding down the button for at least 6 seconds: The device restores factory settings and then is reset."
+            },
+            {
+              "level": 2,
+              "text": "Pressing the button: The device is reset."
+            },
+            {
+              "level": 2,
+              "text": "Resetting the device will interrupt services. Exercise caution when performing this operation."
+            },
+            {
+              "level": 1,
+              "text": "2. One MODE button"
+            },
+            {
+              "level": 1,
+              "text": "3. 24 × 10/100/1000BASE-T ports"
+            },
+            {
+              "level": 1,
+              "text": "4. 4 × GE/10GE/25GE SFP28 ports"
+            },
+            {
+              "level": 1,
+              "text": "5. 2 × 40GE/100GE QSFP28 ports"
+            },
+            {
+              "level": 1,
+              "text": "6. Ground screw: used with a ground cable."
+            },
+            {
+              "level": 1,
+              "text": "7. One console port"
+            },
+            {
+              "level": 1,
+              "text": "8. One USB port"
+            },
+            {
+              "level": 1,
+              "text": "9. One ETH management port"
+            },
+            {
+              "level": 1,
+              "text": "10. Card slot"
+            },
+            {
+              "level": 1,
+              "text": "11. Fan module slot 1"
+            },
+            {
+              "level": 1,
+              "text": "12. Fan module slot 2"
+            },
+            {
+              "level": 1,
+              "text": "13. Power module slot 1"
+            },
+            {
+              "level": 1,
+              "text": "14. Power module slot 2"
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p30",
+          "kind": "slide",
+          "pageNum": 30,
+          "pdfPages": [
+            30
+          ],
+          "slideNumber": 26,
+          "title": "Logical Diagram of Module Connections",
+          "sectionTitle": "Data Communication Network Devices",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-30.webp",
+            "width": 1156,
+            "height": 538,
+            "altText": "LPU LPU MPU Standby MPU LPU1 LPU5 SFU LPU LPU2 LPU6 SFU LPU3 LPU7 LPU SFU LPU4 LPU8 The modules of a modular device are divided into different boards, which communicate with each other through ⚫ internal connections of the modular device. LPUs are connected to each other through SFUs. The communication between LPUs is uniformly forwarded through ⚫ SFUs."
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "The fixed device integrates these functional modules, and the modules communicate with each other through internal connections."
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-q6",
+          "kind": "challenge",
+          "sectionTitle": "Data Communication Process",
+          "challenge": {
+            "id": "ch01-q6",
+            "type": "match-pairs",
+            "prompt": "Match each modular Huawei CloudEngine S12700H-8 board to its hardware role (Slides 24 & 26):",
+            "pairs": [
+              {
+                "left": "MPU",
+                "right": "Mandatory board that controls, manages, and monitors the system"
+              },
+              {
+                "left": "SFU",
+                "right": "Mandatory switch fabric that forwards traffic between all LPUs"
+              },
+              {
+                "left": "LPU",
+                "right": "Optional board that processes data packets and manages port traffic"
+              },
+              {
+                "left": "CMU",
+                "right": "Optional board that monitors ambient temperature and environment"
+              }
+            ],
+            "explanation": "In a modular chassis, MPU (control) and SFU (switching fabric) are mandatory; LPUs provide line interfaces and communicate through the SFUs."
+          }
+        },
+        {
+          "id": "ch01-p32",
+          "kind": "slide",
+          "pageNum": 32,
+          "pdfPages": [
+            32,
+            33
+          ],
+          "slideNumber": 28,
+          "title": "Data Communication Process",
+          "sectionTitle": "Data Communication Process",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-32.webp",
+            "width": 1157,
+            "height": 522,
+            "altText": "The process of virtual information transfer shares many similarities with the transfer of real physical ⚫ objects. Item Parcel Parcel pickup Parcel sorting Parcel sorting Parcel pickup Parcel Item station center center station Transportation Packet Packet Data Data Data Data Computer Computer Gateway Router Internet Router Gateway Computer Computer"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "Packing and labeling (sender):"
+            },
+            {
+              "level": 1,
+              "text": "Sender: The item is packaged into a parcel, and a shipping label containing the sender's and recipient's addresses is attached."
+            },
+            {
+              "level": 1,
+              "text": "Data sender: The application encapsulates the original \"data payload\" by adding a \"header\" and a \"trailer\" to form a packet. The key information in the packet is the sender's and receiver's addresses, that is, the \"source address\" and the \"destination address.\""
+            },
+            {
+              "level": 0,
+              "text": "Local dispatch (first transfer station):"
+            },
+            {
+              "level": 1,
+              "text": "Parcel pickup station: The parcel is received by a courier and placed in the local parcel pickup station. The station determines where to send the parcel based on the recipient's address and notifies the next courier to collect it."
+            },
+            {
+              "level": 1,
+              "text": "Gateway: The packet travels through the network cable to the \"gateway.\" The gateway decapsulates the packet, reads the destination address, and then re-encapsulates it. Depending on the destination address, the packet leaves the local network and is sent to different \"routers.\""
+            },
+            {
+              "level": 0,
+              "text": "Network sorting and transmission (intermediate node):"
+            },
+            {
+              "level": 1,
+              "text": "Parcel sorting center and transportation: The city's parcel sorting center forwards parcels to the destination city's sorting center using different transportation methods, based on the recipient's address."
+            },
+            {
+              "level": 1,
+              "text": "Routers and the Internet backbone: The intermediate routers continuously decapsulate and encapsulate the packet, and then send the packet to the Internet backbone for transmission. Finally, the packet is sent to the destination network."
+            },
+            {
+              "level": 0,
+              "text": "Final delivery and reception (receiver)"
+            },
+            {
+              "level": 1,
+              "text": "Recipient: The sorting center in the destination city checks the recipient's address, dispatches the parcel to the appropriate parcel pickup station, and finally the courier delivers it to the recipient. The recipient opens the parcel, confirms the item is intact, and accepts it. The entire delivery process is complete."
+            },
+            {
+              "level": 1,
+              "text": "Data receiver: The packet arrives at the gateway of the destination computer's network, where it is decapsulated and encapsulated again, then forwarded to the appropriate computer based on the destination address. The computer verifies the packet, and if correct, accepts it and passes the data payload to the corresponding application for processing. A complete network communication process is thus finished."
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p34",
+          "kind": "slide",
+          "pageNum": 34,
+          "pdfPages": [
+            34,
+            35
+          ],
+          "slideNumber": 29,
+          "title": "Common Terms",
+          "sectionTitle": "Data Communication Process",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-34.webp",
+            "width": 1071,
+            "height": 482,
+            "altText": "Term Description Data payload Actual information intended to be transmitted Packet Data unit exchanged and transmitted on a network. Header Segment of information added before the data payload. Trailer Segment of information added after the data payload. Process of adding a header and a trailer to a data payload to form a new Encapsulation packet. Process of removing the header and trailer from a packet to obtain the Decapsulation data payload. Gateway A device that connects two different networks. End device of a data communication system, serving as a sender or Terminal receiver of data."
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "Data payload: It can be understood as the actual information intended to be transmitted. In fact, within a layered communication structure, the data unit (packet) passed from an upper-layer protocol to a lower-layer protocol can be regarded as the data payload of the lower-layer protocol."
+            },
+            {
+              "level": 0,
+              "text": "Packet: The unit of data exchanged and transmitted on a network, with a certain internal format. It usually has the basic structure of \"header + data payload + trailer.\" During transmission, the format and content of the packet may change."
+            },
+            {
+              "level": 0,
+              "text": "Header: To enable better information delivery, when assembling a packet, the segment of information added before the data payload is collectively referred to as the header."
+            },
+            {
+              "level": 0,
+              "text": "Trailer: To enable better information delivery, when assembling a packet, the segment of information added after the data payload is collectively referred to as the trailer. Note that many packets do not have a trailer."
+            },
+            {
+              "level": 0,
+              "text": "Encapsulation: A technique used in layered protocols. When a lower-layer protocol receives a message from an upper-layer protocol, it attaches that message to the data payload portion of the lower-layer message."
+            },
+            {
+              "level": 0,
+              "text": "Decapsulation: The reverse process of encapsulation, which is to remove the header and trailer of a packet to obtain the data payload."
+            },
+            {
+              "level": 0,
+              "text": "Gateway: A network device used to enable communication between networks that adopt different architectures or protocols. It provides functions such as protocol conversion, routing selection, and data exchange. A gateway is a term named according to its deployment location and function, rather than a specific device type."
+            },
+            {
+              "level": 0,
+              "text": "Terminal: An end device in a data communication system, acting as either the sender or receiver of data. It provides the necessary functions for user access and protocol operations, and can be a computer, server, mobile phone, or the like."
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-q7",
+          "kind": "challenge",
+          "sectionTitle": "Data Communication Process",
+          "challenge": {
+            "id": "ch01-q7",
+            "type": "multi-select",
+            "prompt": "Which TWO statements accurately describe data encapsulation and common terms? (Slides 28–29)",
+            "options": [
+              "Encapsulation adds a header (and optionally a trailer) to a data payload",
+              "A gateway is a specific physical hardware box model with no routing function",
+              "Decapsulation removes the header and trailer to recover the data payload",
+              "Every network packet is required to include a trailer"
+            ],
+            "correctIndices": [
+              0,
+              2
+            ],
+            "explanation": "Encapsulation wraps a payload with a header/trailer, and decapsulation strips them off. Note that Huawei explicitly points out many packets do not have a trailer, and 'gateway' is named by its deployment location/function rather than a single device type."
+          }
+        },
+        {
+          "id": "ch01-p36",
+          "kind": "slide",
+          "pageNum": 36,
+          "pdfPages": [
+            36
+          ],
+          "slideNumber": 30,
+          "title": "Journey of This Course",
+          "sectionTitle": "Data Communication Process",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-36.webp",
+            "width": 1166,
+            "height": 558,
+            "altText": "Client Server Web server Web browser program 1 Network reference models TCP/IP TCP/IP 7 WLAN technology basics NIC driver NIC driver WAC AP WLAN AP 3 IP technology basics Switch Switch Router Router 5 Network service basics 2 Ethernet technology basics 4 Network security basics 4 Network security basics 6 Data center network basics 8 Network O&M and troubleshooting"
+          },
+          "notes": [],
+          "vrpBlocks": []
+        }
+      ]
+    },
+    {
+      "id": "ch01-l6",
+      "number": "1.6",
+      "title": "Engineering, Certification & Quiz",
+      "sectionTitle": "Network Engineering and Network Engineers",
+      "summary": "Review network engineering competencies, the Huawei Datacom certification track (HCIA -> HCIP -> HCIE), and pass the official Huawei quiz.",
+      "estimatedMinutes": 5,
+      "steps": [
+        {
+          "id": "ch01-p38",
+          "kind": "slide",
+          "pageNum": 38,
+          "pdfPages": [
+            38
+          ],
+          "slideNumber": 32,
+          "title": "Network Engineering",
+          "sectionTitle": "Network Engineering and Network Engineers",
+          "breadcrumbs": [],
+          "slideBullets": [
+            {
+              "level": 0,
+              "text": "Network engineering:"
+            }
+          ],
+          "diagram": {
+            "src": "./content/ch01/slide-38.webp",
+            "width": 1141,
+            "height": 500,
+            "altText": "Under the guidance of information system engineering methodologies and a well-established organizational structure, and  based on the requirements of network applications, a feasible plan is designed in accordance with the standards, specifications, and technologies of computer network systems. This plan systematically integrates computer network hardware, software, and technologies to build a network system that meets user needs and offers high cost-effectiveness. Application Technical modules covered by network engineering: ⚫ Storage Security Computing Wireless Routing Switching Equipment Media room ... ..."
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "Network engineering refers to a series of activities centered around networks, including network planning, design, implementation, testing, and troubleshooting."
+            },
+            {
+              "level": 0,
+              "text": "The knowledge domain of network engineering design is extensive, and routing and switching are the basics of computer networks."
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p39",
+          "kind": "slide",
+          "pageNum": 39,
+          "pdfPages": [
+            39
+          ],
+          "slideNumber": 33,
+          "title": "Network Engineer",
+          "sectionTitle": "Network Engineering and Network Engineers",
+          "breadcrumbs": [],
+          "slideBullets": [
+            {
+              "level": 0,
+              "text": "Network engineer:"
+            },
+            {
+              "level": 1,
+              "text": "A professional in the field of network engineering who possesses specialized network technologies, professional skills, and"
+            }
+          ],
+          "diagram": {
+            "src": "./content/ch01/slide-39.webp",
+            "width": 1149,
+            "height": 438,
+            "altText": "professional qualities. With certain project implementation experience, a network engineer is able to communicate effectively onsite with customers or other project stakeholders, develop implementation plans and project schedules according to customer requirements and environmental factors (and gain stakeholder approval), mobilize resources to ensure the project is delivered on time with high quality, and, after project completion, provide training to stakeholders and deliver engineering documentation. Comprehensive capability models for network engineers: ⚫ Process specifications Business etiquette Team collaboration Industry knowledge Values Service management Engineering knowledge Service awareness Presentation capability Product expertise Information collection Solution Technical knowledge Learning competency Communication capability Professional knowledge Basic qualification Professional skills"
+          },
+          "notes": [],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p40",
+          "kind": "slide",
+          "pageNum": 40,
+          "pdfPages": [
+            40
+          ],
+          "slideNumber": 34,
+          "title": "Technical Growth Path of a Network Engineer",
+          "sectionTitle": "Network Engineering and Network Engineers",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-40.webp",
+            "width": 1053,
+            "height": 389,
+            "altText": "Planning, construction, Planning and design, construction and implementation, maintenance, and optimization maintenance and troubleshooting, and network optimization the details and back again From the big picture to Packet and underlying Underlying working mechanism of protocols and packet details mechanisms Protocol mechanisms How are OSPF neighbor relationships established? How How to perform, verify, and query OSPF configurations? What What are routing and switching?"
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "OSPF: Open Shortest Path First"
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p41",
+          "kind": "slide",
+          "pageNum": 41,
+          "pdfPages": [
+            41
+          ],
+          "slideNumber": 35,
+          "title": "Huawei Certification Injects Vitality into Talent Development for Enterprises",
+          "sectionTitle": "Network Engineering and Network Engineers",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-41.webp",
+            "width": 1155,
+            "height": 493,
+            "altText": "Facilitating enterprise Providing talent with career Developing certification criteria innovation and transformation development paths • Develop hierarchical certification • Meet enterprise talent's career • Provide authoritative certification criteria based on position levels evolution: Associate -> Professional-> for ICT talent. The ICT talent with and technical fields. Expert. authoritative certification helps • Cultivate platform construction and • Provide a hierarchical certification ensure project delivery quality and service application experts based system that offers customized talent improve customer satisfaction. • Enhance the overall performance on Huawei Cloud. growth paths in accordance with job- • Focus on ICT infrastructure and based capability requirements and and productivity of enterprises. • Accelerate business innovation and cultivate architecture talent in all supports in-depth professional ICT fields. development, integration, and transformation, and improve the expansion, reducing the talent overall operational efficiency. cultivation cost for enterprises."
+          },
+          "notes": [
+            {
+              "level": 0,
+              "text": "ICT: Information & Communications Technology"
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p42",
+          "kind": "slide",
+          "pageNum": 42,
+          "pdfPages": [
+            42
+          ],
+          "slideNumber": 36,
+          "title": "Huawei Datacom Certification System",
+          "sectionTitle": "Network Engineering and Network Engineers",
+          "breadcrumbs": [],
+          "slideBullets": [],
+          "diagram": {
+            "src": "./content/ch01/slide-42.webp",
+            "width": 1053,
+            "height": 467,
+            "altText": "HCIE-Datacom Aiming to cultivate network experts HCIE with solid theoretical foundation and deployment capabilities for HCIP cross-field solutions HCIA-Datacom HCIA Aiming to cultivate network HCIP-Datacom engineers with basic datacom Aiming to cultivate senior network theories and deployment skills engineers with advanced knowledge and deployment skills in the datacom field"
+          },
+          "notes": [],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-q8",
+          "kind": "challenge",
+          "sectionTitle": "Network Engineering and Network Engineers",
+          "challenge": {
+            "id": "ch01-q8",
+            "type": "order-steps",
+            "prompt": "Order the Huawei Datacom Certification levels from foundational to expert (Slides 35–36):",
+            "items": [
+              "HCIA-Datacom (Associate)",
+              "HCIP-Datacom (Professional)",
+              "HCIE-Datacom (Expert)"
+            ],
+            "correctOrder": [
+              0,
+              1,
+              2
+            ],
+            "explanation": "Huawei's hierarchical certification path grows from Associate (HCIA) -> Professional (HCIP) -> Expert (HCIE)."
+          }
+        },
+        {
+          "id": "ch01-p43",
+          "kind": "official-quiz",
+          "pageNum": 43,
+          "pdfPages": [
+            43
+          ],
+          "slideNumber": 37,
+          "title": "Official Huawei Quiz — Data Communication Network Basics",
+          "sectionTitle": "Network Engineering and Network Engineers",
+          "breadcrumbs": [],
+          "slideBullets": [
+            {
+              "level": 1,
+              "text": "1. (Multiple-answer question) Which of the following communication types belong to network communications? ( )"
+            },
+            {
+              "level": 2,
+              "text": "A. Drum signaling"
+            },
+            {
+              "level": 2,
+              "text": "B. Pigeon post"
+            },
+            {
+              "level": 2,
+              "text": "C. Sending an email"
+            },
+            {
+              "level": 2,
+              "text": "D. Transferring files through network cables"
+            }
+          ],
+          "diagram": null,
+          "notes": [
+            {
+              "level": 1,
+              "text": "1. CD"
+            }
+          ],
+          "vrpBlocks": []
+        },
+        {
+          "id": "ch01-p44",
+          "kind": "slide",
+          "pageNum": 44,
+          "pdfPages": [
+            44
+          ],
+          "slideNumber": 38,
+          "title": "Summary",
+          "sectionTitle": "Network Engineering and Network Engineers",
+          "breadcrumbs": [],
+          "slideBullets": [
+            {
+              "level": 0,
+              "text": "This course describes the concepts of network communication and data communication networks. The basic function of data communication networks is to implement network communication."
+            },
+            {
+              "level": 0,
+              "text": "To understand data communication networks, it is necessary to grasp their fundamental concepts and key components, including network topologies, network types, and the various network devices and their functions."
+            },
+            {
+              "level": 0,
+              "text": "Finally, this course also introduces network engineering and network engineers. In addition to fundamental professional qualities, a network engineer also needs to acquire relevant skills and knowledge. Huawei datacom certification provides a specialized learning path to achieve this."
+            }
+          ],
+          "diagram": null,
+          "notes": [],
+          "vrpBlocks": []
+        }
+      ]
+    }
+  ]
+}

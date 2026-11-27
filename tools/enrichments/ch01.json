@@ -1,0 +1,232 @@
+{
+  "description": "Core concepts of communication systems, network topologies, LAN/MAN/WAN types, Huawei network devices (switches, routers, firewalls, WLAN), modular vs. fixed chassis architecture, and packet encapsulation flow.",
+  "lessons": [
+    {
+      "id": "ch01-l1",
+      "title": "Communication & Tech Evolution",
+      "sectionTitle": "Data Communication Network",
+      "summary": "Learn the three core elements of a communication system and trace communication from ancient beacons to 5G/6G and IoE.",
+      "estimatedMinutes": 5,
+      "pages": [2, 3, 5, 6]
+    },
+    {
+      "id": "ch01-l2",
+      "title": "Networks & Topologies",
+      "sectionTitle": "Data Communication Network",
+      "summary": "Understand network communication examples, datacom network components, and compare bus, star, ring, tree, and mesh topologies.",
+      "estimatedMinutes": 5,
+      "pages": [8, 9, 10, 11]
+    },
+    {
+      "id": "ch01-l3",
+      "title": "LAN, MAN, WAN & Enterprise",
+      "sectionTitle": "Data Communication Network",
+      "summary": "Classify networks by geographical coverage (LAN, MAN, WAN) and by operation entity (Enterprise vs. Carrier networks).",
+      "estimatedMinutes": 5,
+      "pages": [13, 14, 15, 16, 17]
+    },
+    {
+      "id": "ch01-l4",
+      "title": "Core Network Devices",
+      "sectionTitle": "Data Communication Network Devices",
+      "summary": "Master the roles of switches (MAC forwarding), routers (IP path selection), firewalls (egress security), and WLAN devices (Fat/Fit/Cloud APs & WAC).",
+      "estimatedMinutes": 6,
+      "pages": [19, 20, 21, 22, 23, 25]
+    },
+    {
+      "id": "ch01-l5",
+      "title": "Huawei Hardware & Data Flow",
+      "sectionTitle": "Data Communication Process",
+      "summary": "Explore modular (MPU/SFU/LPU) vs. fixed chassis hardware, then trace packet encapsulation from sender to receiver using the postal analogy.",
+      "estimatedMinutes": 6,
+      "pages": [26, 27, 29, 30, 32, 34, 36]
+    },
+    {
+      "id": "ch01-l6",
+      "title": "Engineering, Certification & Quiz",
+      "sectionTitle": "Network Engineering and Network Engineers",
+      "summary": "Review network engineering competencies, the Huawei Datacom certification track (HCIA -> HCIP -> HCIE), and pass the official Huawei quiz.",
+      "estimatedMinutes": 5,
+      "pages": [38, 39, 40, 41, 42, 43, 44]
+    }
+  ],
+  "vrpOverrides": {
+    "20": [
+      {
+        "title": "Inspect Switch Hardware & Ports (VRP Preview)",
+        "viewLabel": "User View <HUAWEI>",
+        "commands": [
+          {
+            "code": "<HUAWEI> display interface brief",
+            "tokens": [
+              { "token": "<HUAWEI>", "meaning": "User view prompt — allows status queries and diagnostic tools without modifying configuration." },
+              { "token": "display", "meaning": "Huawei VRP query keyword used to inspect device state, tables, and counters." },
+              { "token": "interface brief", "meaning": "Shows a concise summary of physical/link status and port speeds across switch interfaces." }
+            ]
+          },
+          {
+            "code": "<HUAWEI> display mac-address",
+            "tokens": [
+              { "token": "display", "meaning": "Queries operational state on the switch." },
+              { "token": "mac-address", "meaning": "Displays the MAC address table that switches use to forward Ethernet frames on a LAN." }
+            ]
+          }
+        ]
+      }
+    ],
+    "21": [
+      {
+        "title": "Inspect Router IP Routing Table (VRP Preview)",
+        "viewLabel": "User View <R1>",
+        "commands": [
+          {
+            "code": "<R1> display ip routing-table",
+            "tokens": [
+              { "token": "<R1>", "meaning": "User view prompt on router R1." },
+              { "token": "display", "meaning": "Queries current operational tables." },
+              { "token": "ip routing-table", "meaning": "Lists known destination networks, masks, next hops, and outbound interfaces used for path selection." }
+            ]
+          }
+        ]
+      }
+    ],
+    "27": [
+      {
+        "title": "Verify Modular Chassis Boards (MPU / SFU / LPU)",
+        "viewLabel": "User View <Core-Switch>",
+        "commands": [
+          {
+            "code": "<Core-Switch> display device",
+            "tokens": [
+              { "token": "display", "meaning": "Queries hardware and software status." },
+              { "token": "device", "meaning": "Lists installed MPU, SFU, LPU, SPU, power, and fan modules along with their slot status." }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "challenges": [
+    {
+      "afterPage": 6,
+      "challenge": {
+        "id": "ch01-q1",
+        "type": "order-steps",
+        "prompt": "Arrange these communication milestones in chronological order from oldest to newest (Slide 6):",
+        "items": [
+          "Visual and auditory signals (Beacon fires, ~3000 BCE)",
+          "Telegraph over electrical wires (1830s)",
+          "ARPANET & computer networks (1960s–1970s)",
+          "5G connectivity of everything (Late 2010s)"
+        ],
+        "correctOrder": [0, 1, 2, 3],
+        "explanation": "Communication progressed from Ancient times (~3000 BCE beacons) -> Electrical era (1830s telegraph) -> Information era (1960s–1970s ARPANET) -> IoE era (late 2010s 5G and beyond)."
+      }
+    },
+    {
+      "afterPage": 11,
+      "challenge": {
+        "id": "ch01-q2",
+        "type": "match-pairs",
+        "prompt": "Match each network topology to its defining Huawei textbook characteristic (Slide 10):",
+        "pairs": [
+          { "left": "Bus network", "right": "Failure of the shared bus affects the entire network; insecure" },
+          { "left": "Star network", "right": "Easy to add nodes & monitor, but central node is a single point of failure" },
+          { "left": "Ring network", "right": "Uses fewer cables, but adding a node requires breaking the ring" },
+          { "left": "Full-mesh network", "right": "Highest reliability & efficiency, but costly and hard to scale" }
+        ],
+        "explanation": "Real-world networks combine topologies to balance cost, performance, and reliability. Star is easy to expand; Full-mesh maximizes redundancy at high port/cable cost."
+      }
+    },
+    {
+      "afterPage": 16,
+      "challenge": {
+        "id": "ch01-q3",
+        "type": "multiple-choice",
+        "prompt": "Which network type spans tens to thousands of kilometers to interconnect distant LANs or MANs using technologies such as PPP, MPLS, and SRv6?",
+        "options": [
+          "Local Area Network (LAN)",
+          "Metropolitan Area Network (MAN)",
+          "Wide Area Network (WAN)",
+          "Office Access Network"
+        ],
+        "correctIndex": 2,
+        "explanation": "A WAN covers tens to thousands of kilometers across cities or countries and relies on technologies like PPP, MPLS, and SRv6 (Slide 12)."
+      }
+    },
+    {
+      "afterPage": 21,
+      "challenge": {
+        "id": "ch01-q4",
+        "type": "fill-blank",
+        "prompt": "Complete the core forwarding comparison between switches and routers (Slides 18–19):",
+        "template": "A switch forwards data frames on a LAN using the destination [0] address, whereas a router selects paths for data packets using the destination [1] address.",
+        "bank": ["MAC", "IP", "port", "VLAN"],
+        "correctTokens": ["MAC", "IP"],
+        "explanation": "Switches identify the destination MAC address inside data frames on a LAN; routers examine the destination IP address in data packets to select the next hop."
+      }
+    },
+    {
+      "afterPage": 23,
+      "challenge": {
+        "id": "ch01-q5",
+        "type": "multiple-choice",
+        "prompt": "Which Huawei AP working mode is managed centrally by a Wireless Access Controller (WAC) and suits midsize-to-large enterprises?",
+        "options": [
+          "Fat AP",
+          "Fit AP",
+          "Standalone Home AP",
+          "Passive Repeater"
+        ],
+        "correctIndex": 1,
+        "explanation": "A Fit AP must work together with a WAC for unified management and configuration, making it ideal for midsize and large enterprises. Fat APs work independently for home use (Slide 21)."
+      }
+    },
+    {
+      "afterPage": 30,
+      "challenge": {
+        "id": "ch01-q6",
+        "type": "match-pairs",
+        "prompt": "Match each modular Huawei CloudEngine S12700H-8 board to its hardware role (Slides 24 & 26):",
+        "pairs": [
+          { "left": "MPU", "right": "Mandatory board that controls, manages, and monitors the system" },
+          { "left": "SFU", "right": "Mandatory switch fabric that forwards traffic between all LPUs" },
+          { "left": "LPU", "right": "Optional board that processes data packets and manages port traffic" },
+          { "left": "CMU", "right": "Optional board that monitors ambient temperature and environment" }
+        ],
+        "explanation": "In a modular chassis, MPU (control) and SFU (switching fabric) are mandatory; LPUs provide line interfaces and communicate through the SFUs."
+      }
+    },
+    {
+      "afterPage": 34,
+      "challenge": {
+        "id": "ch01-q7",
+        "type": "multi-select",
+        "prompt": "Which TWO statements accurately describe data encapsulation and common terms? (Slides 28–29)",
+        "options": [
+          "Encapsulation adds a header (and optionally a trailer) to a data payload",
+          "A gateway is a specific physical hardware box model with no routing function",
+          "Decapsulation removes the header and trailer to recover the data payload",
+          "Every network packet is required to include a trailer"
+        ],
+        "correctIndices": [0, 2],
+        "explanation": "Encapsulation wraps a payload with a header/trailer, and decapsulation strips them off. Note that Huawei explicitly points out many packets do not have a trailer, and 'gateway' is named by its deployment location/function rather than a single device type."
+      }
+    },
+    {
+      "afterPage": 42,
+      "challenge": {
+        "id": "ch01-q8",
+        "type": "order-steps",
+        "prompt": "Order the Huawei Datacom Certification levels from foundational to expert (Slides 35–36):",
+        "items": [
+          "HCIA-Datacom (Associate)",
+          "HCIP-Datacom (Professional)",
+          "HCIE-Datacom (Expert)"
+        ],
+        "correctOrder": [0, 1, 2],
+        "explanation": "Huawei's hierarchical certification path grows from Associate (HCIA) -> Professional (HCIP) -> Expert (HCIE)."
+      }
+    }
+  ]
+}

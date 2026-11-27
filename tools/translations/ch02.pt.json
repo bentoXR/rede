@@ -1,0 +1,472 @@
+{
+  "title": "Modelos de Referência de Rede (Network Reference Models)",
+  "description": "Aplicações e dados binários, organizações de padronização (IETF, IEEE, ISO), comparação entre OSI, TCP/IP e Equivalent TCP/IP (5 camadas), protocolos essenciais e encapsulation & decapsulation ponta a ponta.",
+  "lessons": {
+    "ch02-l1": {
+      "title": "Aplicações, Dados & Padrões (IETF, IEEE, ISO)",
+      "sectionTitle": "Applications and Data",
+      "summary": "Veja como informações viram 0s e 1s, acompanhe uma requisição web ponta a ponta e diferencie IETF, IEEE e ISO."
+    },
+    "ch02-l2": {
+      "title": "Modelos OSI vs. TCP/IP",
+      "sectionTitle": "Network Reference Models & Standard Protocols",
+      "summary": "Compare o modelo OSI (7 camadas), TCP/IP (4 camadas) e Equivalent TCP/IP (5 camadas), além dos PDUs de cada camada."
+    },
+    "ch02-l3": {
+      "title": "Application Layer & Transport Layer",
+      "sectionTitle": "Network Reference Models & Standard Protocols",
+      "summary": "Domine as portas TCP/UDP clássicas (HTTP 80, DNS 53, Telnet 23, FTP 20/21, SMTP 25), resolução DNS, fluxo HTTP C/S e TCP vs. UDP."
+    },
+    "ch02-l4": {
+      "title": "Network Layer & Encaminhamento IP",
+      "sectionTitle": "Network Reference Models & Standard Protocols",
+      "summary": "Entenda como IPv4/IPv6, routing tables, next hops, OSPF/BGP e ICMP trabalham juntos para mover packets entre redes."
+    },
+    "ch02-l5": {
+      "title": "Data Link (Ethernet/PPP) & Meios Físicos",
+      "sectionTitle": "Network Reference Models & Standard Protocols",
+      "summary": "Estude Ethernet e MAC addresses de 48 bits, histórico do CSMA/CD, negociação PPP (LCP -> Auth -> NCP) e cabos par trançado, fibra, híbridos e Wi-Fi."
+    },
+    "ch02-l6": {
+      "title": "Encapsulation, Decapsulation & Quiz",
+      "sectionTitle": "Data Communication Process",
+      "summary": "Acompanhe passo a passo o encapsulation no remetente, Layer 2 switching vs. Layer 3 routing na rede intermediária, decapsulation no receptor e o Quiz oficial."
+    }
+  },
+  "slides": {
+    "ch02-p02": {
+      "title": "Apresentação (Foreword)",
+      "slideBullets": [
+        "Na era digital, a informação em forma de dados permeia todos os aspectos das nossas vidas. O que são dados? Como eles são transmitidos?",
+        "Para transmitir dados com eficiência, organizações de padronização e fabricantes criaram diversos network protocols. Como esses protocolos colaboram entre si nas data communication networks?",
+        "Neste capítulo, usaremos os network reference models para compreender de forma clara a 'vida' dos dados na rede."
+      ]
+    },
+    "ch02-p03": {
+      "title": "Objetivos do Capítulo (Objectives)",
+      "slideBullets": [
+        "Ao concluir este capítulo, você será capaz de:",
+        "Compreender a definição de dados e o processo de transmissão.",
+        "Entender os conceitos e as vantagens dos network reference models.",
+        "Conhecer os protocolos padrão (standard protocols) mais comuns.",
+        "Dominar os processos de data encapsulation e decapsulation."
+      ]
+    },
+    "ch02-p05": {
+      "title": "Origem da História: Applications",
+      "slideBullets": [
+        "Aplicações (Applications) existem para atender necessidades humanas como navegação web, jogos online e streaming de vídeo — gerando informações em texto, imagem e vídeo."
+      ]
+    },
+    "ch02-p06": {
+      "title": "Implementação de Aplicações: Data",
+      "notes": [
+        "Computadores só conseguem reconhecer dados digitais compostos por 0s e 1s. Eles não interpretam informações diretamente, por isso toda informação precisa ser traduzida em dados segundo regras definidas.",
+        "Humanos, por outro lado, não conseguem ler sequências binárias diretamente; portanto, os dados precisam ser reconvertidos em formatos compreensíveis.",
+        "Network engineers precisam focar no processo ponta a ponta (end-to-end) de transmissão de dados."
+      ]
+    },
+    "ch02-p07": {
+      "title": "Processo de Transmissão de Dados (Data Transmission Process)",
+      "slideBullets": [
+        "Um web client enviando dados para um web server é o exemplo clássico de um processo completo de transmissão de dados."
+      ],
+      "notes": [
+        "Este capítulo vai ajudar você a compreender os reference models e os diversos network protocols usados durante a transmissão de dados."
+      ]
+    },
+    "ch02-p09": {
+      "title": "Protocolos de Rede e Organizações de Padrões (IETF, IEEE, ISO)",
+      "notes": [
+        "RFC (Request for Comments): publicação oficial de um padrão, protocolo ou especificação relacionada ao funcionamento da Internet.",
+        "IEC (International Electrotechnical Commission): organização internacional não governamental responsável pela padronização nas áreas elétrica e eletrônica."
+      ]
+    },
+    "ch02-p10": {
+      "title": "Modelo de Referência: OSI Reference Model",
+      "slideBullets": [
+        "Na década de 1980, a ISO propôs o famoso modelo OSI-RM (Open Systems Interconnection Reference Model), composto por 7 camadas."
+      ],
+      "notes": [
+        "As diversas funções de um network device são executadas por diferentes protocolos. Criar um modelo em camadas facilita o desenvolvimento independente de protocolos, reduz o acoplamento entre camadas e torna o aprendizado muito mais simples.",
+        "O OSI reference model também é chamado de modelo de 7 camadas. De cima para baixo, são elas:",
+        "Application layer: fornece serviços de rede diretamente para as aplicações e é a camada mais próxima do usuário.",
+        "Presentation layer: fornece codificação e conversão de formatos de dados para que dados enviados pela Application layer de um sistema sejam entendidos por outro.",
+        "Session layer: estabelece, gerencia e encerra sessões entre entidades da Presentation layer por meio de requisições e respostas entre aplicações.",
+        "Transport layer: estabelece, mantém e encerra a transmissão end-to-end, controla a velocidade de envio e organiza o sequenciamento dos dados.",
+        "Network layer: define logical addresses para dispositivos Layer 3 (como routers) determinarem caminhos e transmitirem dados da rede de origem até a rede de destino.",
+        "Data link layer: agrupa bits em bytes e bytes em data frames, realiza comunicação direta point-to-point ou point-to-multipoint no link e faz detecção de erros.",
+        "Physical layer: transmite bit streams entre dispositivos e define especificações físicas como níveis elétricos, velocidades e pinagem de cabos."
+      ]
+    },
+    "ch02-p12": {
+      "title": "Modelo de Referência: TCP/IP Reference Model",
+      "notes": [
+        "TCP/IP reference model:",
+        "O modelo TCP/IP originou-se do projeto e da implementação da ARPANET, sendo posteriormente enriquecido e refinado pelo IETF.",
+        "Diferente do modelo teórico OSI, o TCP/IP é orientado à prática (practice-driven) — abstraído a partir de inúmeras RFCs de protocolos reais.",
+        "No início dos anos 1980 surgiram a RFC 793 e a RFC 791, definindo TCP (núcleo da Transport layer) e IP (núcleo da Network layer), consolidando a relação hierárquica entre elas.",
+        "No final dos anos 1980 surgiram a RFC 1122 e a RFC 1123, definindo padrões de implementação de hosts e protocolos da Application layer do modelo TCP/IP de 4 camadas.",
+        "O TCP/IP reference model é semelhante ao OSI, mas adota 4 camadas, sendo mais simples de implementar e implantar:",
+        "Application layer: define protocolos voltados ao usuário (como FTP e Telnet) e protocolos de suporte ao sistema (como DNS).",
+        "Transport layer: fornece comunicação end-to-end para a Application layer, tendo dois protocolos principais: TCP e UDP.",
+        "Internet layer: implementa o encaminhamento host-to-host através de redes distintas; seu principal protocolo é o IP.",
+        "Network interface layer: responsável por transmitir data frames brutos entre nós adjacentes em uma mesma rede física.",
+        "Na prática, o TCP/IP reference model também é chamado de TCP/IP model, TCP/IP protocol suite ou TCP/IP protocol stack."
+      ]
+    },
+    "ch02-p14": {
+      "title": "Modelo de Referência: Equivalent TCP/IP Model (5 Camadas)",
+      "notes": [
+        "Equivalent TCP/IP model:",
+        "Não é um modelo oficial de nenhuma organização de padrões, mas sim um framework didático nascido da prática acadêmica e de engenharia.",
+        "Ele divide a Network interface layer do TCP/IP de 4 camadas em Physical layer e Data link layer, ficando mais fiel às implementações reais e muito melhor para estudo e troubleshooting.",
+        "Ajuda engenheiros a compreender os detalhes da arquitetura em camadas ao compará-lo com os modelos TCP/IP e OSI.",
+        "Para network engineers, o foco principal está nas camadas 1 a 4 (Physical, Data link, Network e Transport). Já para engenheiros de TI/software, o foco maior está na camada 5 (Application layer)."
+      ]
+    },
+    "ch02-p15": {
+      "title": "Protocolos Comuns do TCP/IP (Common TCP/IP Protocols)",
+      "slideBullets": [
+        "A pilha TCP/IP define um conjunto completo de protocolos padrão, trocando unidades chamadas PDUs (Protocol Data Units) em cada camada."
+      ],
+      "notes": [
+        "Application layer",
+        "Telnet: protocolo de login remoto usado para conectar-se a um terminal à distância e operar recursos como se estivesse localmente.",
+        "FTP (File Transfer Protocol): fornece um método estruturado para transferir arquivos de um host para outro.",
+        "TFTP (Trivial File Transfer Protocol): alternativa simplificada ao FTP para transferências básicas de arquivos sem verificação ou interações complexas.",
+        "SNMP (Simple Network Management Protocol): permite visualizar e modificar informações de gerenciamento de elementos de rede (NEs) remotamente.",
+        "HTTP (Hypertext Transfer Protocol): usado para acessar páginas em um web server.",
+        "SMTP (Simple Mail Transfer Protocol): usado para enviar e-mails entre servidores/computadores.",
+        "DNS (Domain Name Service): traduz domain names de hosts em IP addresses.",
+        "DHCP (Dynamic Host Configuration Protocol): um servidor DHCP fornece automaticamente parâmetros de configuração e atribui IP addresses aos clientes que precisam se conectar à rede.",
+        "Transport layer",
+        "TCP (Transmission Control Protocol): oferece serviço de comunicação confiável e connection-oriented, utilizado por grande parte das aplicações populares.",
+        "UDP (User Datagram Protocol): oferece comunicação connectionless, sem garantir a confiabilidade na entrega dos packets.",
+        "Network layer",
+        "IP (Internet Protocol): encapsula dados da Transport layer em data packets e os encaminha da origem ao destino. Fornece serviço connectionless e não confiável.",
+        "ICMP (Internet Control Message Protocol): envia mensagens de controle sobre IP para diagnosticar falhas e condições da rede, auxiliando administradores no troubleshooting.",
+        "IGMP (Internet Group Management Protocol): gerencia a participação em grupos multicast entre hosts IP e multicast routers diretamente conectados.",
+        "Data link layer",
+        "Ethernet: protocolo Layer 2 de broadcast e multi-access — a tecnologia de LAN mais utilizada no mundo.",
+        "PPP (Point-to-Point Protocol): protocolo Layer 2 ponto a ponto amplamente empregado em links WAN.",
+        "PPPoE (Point-to-Point Protocol over Ethernet): permite que hosts em rede Ethernet se conectem a um concentrador remoto — muito comum em banda larga residencial."
+      ]
+    },
+    "ch02-p17": {
+      "title": "Application Layer (Camada de Aplicação)"
+    },
+    "ch02-p18": {
+      "title": "Protocolo da Application Layer: DNS",
+      "notes": [
+        "Cada nó na rede possui um IP address único para se comunicar, mas memorizar dezenas de IPs é difícil para humanos. O DNS resolve esse problema mapeando IP addresses em domain names baseados em texto.",
+        "Domain name: identificador textual de um host — na maioria das vezes, o endereço do site digitado no navegador.",
+        "Note:",
+        "C/S: modelo client/server",
+        "Os domain names e IP addresses exibidos na figura são apenas exemplos ilustrativos."
+      ]
+    },
+    "ch02-p19": {
+      "title": "Protocolo da Application Layer: HTTP",
+      "slideBullets": [
+        "O HTTP (Hypertext Transfer Protocol) é o protocolo mais popular da Internet, operando na arquitetura client/server entre o navegador (HTTP client) e o web server."
+      ],
+      "notes": [
+        "Uma URL identifica de forma única o endereço de uma página web ou recurso na Internet.",
+        "Tipos comuns de URLs:",
+        "URLs de páginas web: ex. http://www.huawei.com — contém o protocolo http:// e o domain name www.huawei.com.",
+        "Endereços de servidor FTP: ex. ftp://example.com/file.zip — contém o protocolo ftp://, o domínio example.com e o nome do arquivo file.zip."
+      ]
+    },
+    "ch02-p20": {
+      "title": "Transport Layer (Camada de Transporte)"
+    },
+    "ch02-p21": {
+      "title": "Protocolos da Transport Layer: TCP e UDP",
+      "notes": [
+        "Tanto o TCP quanto o UDP usam o source port number e o destination port number para identificar exatamente qual aplicação enviou os dados e qual aplicação deve recebê-los."
+      ]
+    },
+    "ch02-p22": {
+      "title": "Network Layer (Camada de Rede)",
+      "slideBullets": [
+        "A Network layer (ou Internet layer) transmite data packets de um host a outro através de redes distintas; seu PDU é chamado de Packet."
+      ],
+      "notes": [
+        "IPv4: Internet Protocol version 4 — o protocolo de Network layer mais utilizado no mundo.",
+        "IPv6: Internet Protocol version 6."
+      ]
+    },
+    "ch02-p23": {
+      "title": "Funcionamento da Network Layer (IP & Routing Table)",
+      "notes": [
+        "Quando o IP é usado na Network layer, ambas as partes recebem um IP address único (inteiro binário de 32 bits). Para facilitar a leitura, usa-se notação decimal pontuada (4 bytes separados por pontos), como 192.168.1.1.",
+        "Encapsulation e encaminhamento de pacotes IP:",
+        "1. Ao receber dados da camada superior (Transport layer), a Network layer encapsula o IP header adicionando o source IP address e o destination IP address.",
+        "2. Cada dispositivo intermediário (como um router) mantém uma routing table que funciona como um mapa. Ao receber um packet, ele lê o destination IP, busca uma entrada correspondente na routing table e encaminha conforme essa rota.",
+        "3. Quando o packet alcança o host de destino, este verifica o destination IP para decidir se aceita e processa o pacote.",
+        "No funcionamento do IP, protocolos de roteamento como OSPF e BGP ajudam routers a construir suas routing tables, enquanto o ICMP realiza controle e diagnóstico do status da rede."
+      ],
+      "vrpBlocks": [
+        {
+          "title": "Testar Conectividade e Rota na Network Layer (Prévia VRP)",
+          "viewLabel": "User View <R1>",
+          "commands": [
+            {
+              "code": "<R1> ping 192.168.1.2",
+              "tokens": [
+                { "token": "ping", "meaning": "Usa pacotes ICMP Echo Request/Reply na Network layer para testar conectividade IP ponta a ponta." },
+                { "token": "192.168.1.2", "meaning": "Destination IPv4 address em notação decimal pontuada (32 bits / 4 bytes)." }
+              ]
+            },
+            {
+              "code": "<R1> tracert 10.1.2.1",
+              "tokens": [
+                { "token": "tracert", "meaning": "Rastreia cada salto (router hop) Layer 3 ao longo do caminho até o destino usando mensagens ICMP." },
+                { "token": "10.1.2.1", "meaning": "Endereço IPv4 de destino a ser rastreado." }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ch02-p24": {
+      "title": "Data Link Layer (Camada de Enlace)",
+      "slideBullets": [
+        "A Data link layer fica entre a Network layer e a Physical layer, oferecendo comunicação dentro do mesmo segmento (intra-segment) por meio de Frames."
+      ],
+      "notes": [
+        "Ethernet é o protocolo de Data link layer mais comum em LANs.",
+        "Uma LAN é um ambiente broadcast e multi-access, onde vários terminais acessam serviços simultaneamente.",
+        "O Ethernet foi projetado justamente para topologias bus ou star com broadcast/multi-access, conectando múltiplos dispositivos.",
+        "PPP é o protocolo de Data link layer mais comum em WANs.",
+        "Uma WAN cobre cidades, países ou continentes ligando LANs distantes. Seus requisitos centrais são segurança, confiabilidade e atravessar redes de terceiros (carrier networks) em conexões ponto a ponto entre dois extremos específicos (ex.: egress router da empresa ↔ router da operadora).",
+        "O PPP liga exclusivamente dois dispositivos (como uma linha dedicada): só existem você e a outra ponta, dispensando endereços para identificar o destino, e já conta com autenticação nativa para proteger o link."
+      ]
+    },
+    "ch02-p25": {
+      "title": "Tecnologia da Data Link Layer: Ethernet",
+      "notes": [
+        "Ideia central da ALOHAnet: Qualquer nó transmite quando quiser; se houver colisão (dois nós enviando ao mesmo tempo), cada nó aguarda um tempo aleatório e tenta novamente.",
+        "Ethernet: O termo 'Ether' vem da hipótese física do século XIX de um meio onipresente no universo. Metcalfe desejava que essa nova rede fosse um meio universal conectando todos os computadores.",
+        "CSMA/CD (Carrier Sense Multiple Access / Collision Detection): Como o Ethernet original conectava dispositivos em um cabo compartilhado, era necessário um mecanismo para escutar o canal e detectar/evitar colisões simultâneas — esse mecanismo é o CSMA/CD."
+      ]
+    },
+    "ch02-p26": {
+      "title": "Ethernet e MAC Address",
+      "notes": [
+        "O padrão Ethernet especifica o formato do data frame e o controle de acesso ao meio na Data link layer, além dos meios de transmissão, sinais elétricos e interfaces na Physical layer.",
+        "Um MAC address tem 48 bits (6 bytes) de comprimento e é composto por 12 dígitos hexadecimais — por exemplo: 48-A4-72-1C-8F-4F."
+      ],
+      "vrpBlocks": [
+        {
+          "title": "Inspecionar MAC Address de uma Interface no Switch Huawei",
+          "viewLabel": "User View <SW1>",
+          "commands": [
+            {
+              "code": "<SW1> display interface GigabitEthernet 0/0/1",
+              "tokens": [
+                { "token": "display", "meaning": "Consulta parâmetros e estatísticas de interface." },
+                { "token": "interface", "meaning": "Seleciona uma interface física específica." },
+                { "token": "GigabitEthernet 0/0/1", "meaning": "Mostra o MAC address gravado de fábrica (48 bits / 12 hex), estado do link e contadores de frames." }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ch02-p27": {
+      "title": "Tecnologia da Data Link Layer: PPP",
+      "slideBullets": [
+        "O PPP (Point-to-Point Protocol) é um protocolo Layer 2 de WAN muito usado para encapsular e transmitir dados ponto a ponto sobre links full-duplex."
+      ],
+      "notes": [
+        "Vantagens do PPP:",
+        "Suporta links síncronos e assíncronos.",
+        "Alta extensibilidade: pode ser estendido como PPPoE (Point-to-Point Protocol over Ethernet) quando frames PPP precisam trafegar sobre Ethernet.",
+        "Fornece o LCP (Link Control Protocol) para negociar parâmetros da Data link layer.",
+        "Oferece protocolos de autenticação CHAP (Challenge-Handshake Authentication Protocol) e PAP (Password Authentication Protocol) para reforçar a segurança.",
+        "Fornece o NCP (Network Control Protocol) para negociar parâmetros da Network layer.",
+        "Não possui mecanismo de retransmissão, reduzindo custo e acelerando o encaminhamento dos packets."
+      ]
+    },
+    "ch02-p28": {
+      "title": "Processo de Estabelecimento de Link PPP",
+      "slideBullets": [
+        "O estabelecimento de um link PPP envolve 3 etapas: negociação de enlace (LCP), negociação de autenticação (opcional: CHAP/PAP) e negociação de camada de rede (NCP)."
+      ],
+      "notes": [
+        "Etapas do estabelecimento de link PPP:",
+        "1. Os dois dispositivos entram na fase Establish ao iniciar a criação do link PPP.",
+        "2. Na fase Establish, ocorre a negociação LCP para definir modo de trabalho (Single-link PPP ou Multilink PPP), MRU (Maximum Receive Unit), modo de autenticação e magic number. Se der certo, o LCP passa para Opened.",
+        "3. Se a autenticação estiver configurada, os dispositivos vão para a fase Authenticate (CHAP ou PAP). Caso contrário, seguem direto para a fase Network.",
+        "4. Na fase Authenticate, se a autenticação falhar, entram na fase Terminate (link derrubado e LCP fica Down). Se passar, entram na fase Network com LCP Opened.",
+        "5. Na fase Network, ocorre a negociação NCP (como IPCP para negociar IP addresses ou MPLSCP) para configurar o protocolo da Network layer.",
+        "6. Após o sucesso do NCP, o link fica pronto para trafegar packets. A qualquer momento, queda física, falha de autenticação, timeout ou comando administrativo leva à fase Terminate.",
+        "7. Na fase Terminate, após liberar todos os recursos, os dispositivos entram na fase Dead até iniciarem uma nova conexão PPP."
+      ]
+    },
+    "ch02-p30": {
+      "title": "Physical Layer (Camada Física)"
+    },
+    "ch02-p31": {
+      "title": "Meios de Transmissão Comuns (Transmission Media)",
+      "notes": [
+        "Twisted pair cable (Cabo de par trançado): Popularmente chamado de cabo de rede, é o meio mais usado no Ethernet atual para conectar terminais e dispositivos.",
+        "Conforme frequência e relação sinal-ruído (SNR), os cabos comuns são Cat 5, Cat 5e e Cat 6 — todos usam conectores RJ45 e têm distância máxima de transmissão de 100 m.",
+        "Quanto à blindagem, dividem-se em STP (Shielded Twisted Pair) e UTP (Unshielded Twisted Pair):",
+        "STP: reduz radiação, protege contra interceptação e bloqueia interferência eletromagnética externa (EMI). Alcança taxas melhores que o UTP equivalente, mas é mais caro e difícil de instalar.",
+        "UTP: baixo custo, leve e fácil de dobrar; por atender perfeitamente redes comuns, é o mais amplamente utilizado.",
+        "Optical fiber (Fibra óptica): Filamento de vidro que conduz sinais ópticos com altíssima capacidade.",
+        "Classifica-se em single-mode fiber (monomodo) e multimode fiber (multimodo):",
+        "Single-mode fiber: transmite sinais em apenas um modo para dado comprimento de onda — oferece banda larga e grande capacidade, ideal para longas distâncias.",
+        "Multimode fiber: transmite em múltiplos modos causando dispersão modal — tem menor capacidade e desempenho inferior à monomodo, sendo indicada para curtas distâncias.",
+        "Optical module (Módulo óptico): Componente responsável por converter sinais elétricos em sinais ópticos (e vice-versa) em redes ópticas.",
+        "Hybrid cable (Cabo híbrido): Reúne fibras ópticas e fios de cobre na mesma capa, transmitindo dados em alta velocidade e fornecendo energia PoE ao mesmo tempo.",
+        "As fibras ópticas conduzem os dados em alta velocidade enquanto o cobre fornece energia elétrica a longas distâncias.",
+        "Existem duas gerações conforme o conector: Hybrid cable 1.0 e Hybrid cable 2.0:",
+        "Hybrid cable 1.0: ocupa duas portas no dispositivo — uma elétrica (RJ45/Phoenix para PoE) e uma óptica (conector LC no módulo óptico para dados).",
+        "Hybrid cable 2.0: ocupa apenas UMA porta híbrida óptico-elétrica com conector PDLC encaixado em um hybrid module, levando dados e energia PoE juntos.",
+        "Hybrid module: suporta transmissão óptica e elétrica + PoE, aceitando tanto hybrid cable 2.0 quanto cabo óptico comum.",
+        "Electromagnetic wave (Ondas eletromagnéticas): Sinais wireless trafegam por ondas eletromagnéticas — o wireless router modula os dados no sinal de rádio e a placa wireless do celular/notebook demodula para recuperar os dados originais."
+      ]
+    },
+    "ch02-p35": {
+      "title": "Data Encapsulation no Remetente (Sender)",
+      "notes": [
+        "Suponha que você abra o navegador para acessar o site oficial da Huawei. Ao pressionar Enter, acontecem estas 6 etapas no seu computador:",
+        "1. O navegador aciona o HTTP (Application layer) para encapsular os dados da aplicação (incluindo o HTTP header).",
+        "2. O HTTP usa o TCP para garantir transmissão confiável e entrega esses dados ao módulo TCP.",
+        "3. O módulo TCP adiciona o TCP header (portas de origem e destino): o PDU agora se chama Segment e é enviado ao módulo IPv4 (ou IPv6) na Network layer.",
+        "4. O módulo IPv4 encapsula o IPv4 header: o PDU passa a se chamar Packet e segue para o módulo Ethernet (NIC) na Data link layer.",
+        "5. O módulo Ethernet adiciona o Ethernet header e o trailer FCS (Frame Check Sequence): o PDU agora é um Frame e desce para a Physical layer.",
+        "6. Conforme o meio físico, a Physical layer converte os bits digitais em sinais elétricos, ópticos ou ondas eletromagnéticas (Bitstream) e os transmite pelo meio."
+      ]
+    },
+    "ch02-p37": {
+      "title": "Transmissão na Rede Intermediária (Switch vs. Router)",
+      "slideBullets": [
+        "Os dados totalmente encapsulados trafegam pela rede intermediária até o destino."
+      ],
+      "notes": [
+        "Na maioria dos casos:",
+        "Um dispositivo Layer 2 (como um Switch) desencapsula apenas até o Layer 2 header e executa o 'switching' com base no MAC address.",
+        "Um dispositivo Layer 3 (como um Router) desencapsula até o Layer 3 header e executa o 'routing' com base no IP address.",
+        "Mais detalhes sobre switching e routing serão aprofundados nos capítulos Ethernet Switching Basics e IP Routing Basics."
+      ]
+    },
+    "ch02-p38": {
+      "title": "Data Decapsulation no Receptor (Receiver)",
+      "notes": [
+        "Após atravessar a rede intermediária, os dados chegam ao servidor de destino. Com base nos headers de cada protocolo, o pacote passa por decapsulation camada por camada (Physical -> Data Link -> Network -> Transport -> Application) até ser entregue à aplicação do web server."
+      ]
+    },
+    "ch02-p39": {
+      "title": "Quiz Oficial Huawei — Network Reference Models",
+      "slideBullets": [
+        "1. (Questão discursiva) Quais são as vantagens de um modelo em camadas (layered model)?",
+        "2. (Questão discursiva) Quais são os protocolos comuns na Application layer, Transport layer, Network layer e Data link layer?"
+      ],
+      "notes": [
+        "1. Vantagens:",
+        "Divisão clara de funções e fronteiras entre camadas facilita desenvolvimento, design e troubleshooting de cada componente.",
+        "Define as funções de cada camada, incentivando a padronização da indústria.",
+        "Fornece interfaces padronizadas entre hardware e software de diferentes redes, aumentando a compatibilidade.",
+        "2. Protocolos comuns:",
+        "Application layer: HTTP, DNS, FTP e Telnet",
+        "Transport layer: UDP e TCP",
+        "Network layer: IP e ICMP",
+        "Data link layer: Ethernet e PPP"
+      ]
+    },
+    "ch02-p40": {
+      "title": "Resumo do Capítulo (Summary)",
+      "slideBullets": [
+        "Tanto o OSI reference model quanto o TCP/IP reference model adotam o design em camadas:",
+        "Divisão clara de funções e fronteiras facilita desenvolvimento, projeto e troubleshooting.",
+        "Define responsabilidades por camada impulsionando a padronização do setor.",
+        "Oferece interfaces entre hardware e software melhorando a compatibilidade.",
+        "A geração e a transmissão de dados exigem colaboração entre módulos, cada um cumprindo exatamente o seu papel."
+      ]
+    }
+  },
+  "challenges": {
+    "ch02-q1": {
+      "prompt": "Associe cada organização de padronização à sua principal contribuição para redes (Slide 9):",
+      "pairs": [
+        { "left": "IETF", "right": "Desenvolve os protocolos TCP/IP da Internet e publica RFCs" },
+        { "left": "IEEE", "right": "Define IEEE 802.3 (Ethernet) e IEEE 802.11 (Wi-Fi)" },
+        { "left": "ISO", "right": "Definiu o modelo de referência OSI de 7 camadas (ISO/IEC 7498-1)" }
+      ],
+      "explanation": "O IETF publica RFCs do TCP/IP, o IEEE padroniza Ethernet (802.3) e Wi-Fi (802.11), e a ISO publicou o modelo OSI."
+    },
+    "ch02-q2": {
+      "prompt": "Associe cada camada do Equivalent TCP/IP model ao nome oficial do seu PDU (Slides 13–26):",
+      "pairs": [
+        { "left": "Application layer", "right": "Data" },
+        { "left": "Transport layer", "right": "Segment" },
+        { "left": "Network layer", "right": "Packet" },
+        { "left": "Data link layer", "right": "Frame" },
+        { "left": "Physical layer", "right": "Bitstream" }
+      ],
+      "explanation": "PDUs de cima para baixo no HCIA-Datacom: Application -> Data, Transport -> Segment, Network -> Packet, Data Link -> Frame, Physical -> Bitstream."
+    },
+    "ch02-q3": {
+      "prompt": "Complete as portas padrão da Transport layer apresentadas no Slide 14:",
+      "template": "HTTP usa a TCP port [0], Telnet usa a TCP port [1], SMTP usa a TCP port [2], e DNS usa a UDP port [3].",
+      "bank": ["80", "23", "25", "53", "21"],
+      "correctTokens": ["80", "23", "25", "53"],
+      "explanation": "Decore estas portas clássicas do HCIA: HTTP = 80 (TCP), SMTP = 25 (TCP), Telnet = 23 (TCP), FTP = 20 e 21 (TCP), DNS = 53 (UDP)."
+    },
+    "ch02-q4": {
+      "prompt": "Quais cenários são mais adequados para UDP em vez de TCP? (Slides 17–18)",
+      "options": [
+        "Chamadas de vídeo em tempo real onde baixa latência importa mais do que retransmitir pacotes perdidos",
+        "Transferência de arquivos exigindo garantia de zero perdas e entrega em ordem",
+        "Consultas rápidas de nomes de domínio via DNS",
+        "Jogos online que toleram pequenas perdas ocasionais de pacotes"
+      ],
+      "explanation": "O UDP (RFC 768) é connectionless com baixíssimo overhead e latência — ideal para vídeo, jogos online e consultas DNS. Transferências de arquivo e web usam TCP confiável (RFC 793)."
+    },
+    "ch02-q5": {
+      "prompt": "Quando um router intermediário recebe um IP packet, o que ele consulta para decidir o next hop e a outbound interface? (Slide 20)",
+      "options": [
+        "O destination MAC address na sua ARP table local",
+        "O destination IP address na sua routing table",
+        "O destination TCP port number na sua tabela de sessões",
+        "O trailer Frame Check Sequence (FCS)"
+      ],
+      "explanation": "Routers leem o destination IP address no header da Network layer e consultam sua routing table (como um mapa) para encontrar o next hop e a interface de saída."
+    },
+    "ch02-q6": {
+      "prompt": "Ordene as três fases de negociação do estabelecimento de um link PPP da primeira até a última (Slide 25):",
+      "items": [
+        "Negociação LCP (fase Establish: MRU, modo de operação, método de auth)",
+        "Negociação de autenticação (CHAP ou PAP opcional)",
+        "Negociação NCP (fase Network: IPCP / MPLSCP)"
+      ],
+      "explanation": "O PPP negocia primeiro parâmetros de enlace com LCP, opcionalmente autentica via CHAP ou PAP, e por fim negocia parâmetros da Network layer (como IP addresses) via NCP/IPCP."
+    },
+    "ch02-q7": {
+      "prompt": "Qual afirmação sobre meios de transmissão (Transmission Media) é VERDADEIRA segundo o Slide 27?",
+      "options": [
+        "Cabos par trançado Cat 5e/Cat 6 com conectores RJ45 suportam distância máxima de 100 m",
+        "Multimode fiber tem menos dispersão e maior capacidade que single-mode fiber para longas distâncias",
+        "Hybrid cable 2.0 exige duas portas separadas (elétrica RJ45 + óptica LC) no switch",
+        "Cabos UTP são mais caros e mais rígidos para dobrar do que cabos STP"
+      ],
+      "explanation": "Cabos Cat 5/5e/6 com RJ45 suportam até 100 m. Fibra single-mode (não multimode) é para longa distância, UTP é mais barato/leve que STP, e Hybrid cable 2.0 usa apenas uma porta híbrida."
+    },
+    "ch02-q8": {
+      "prompt": "Ordene o Data Encapsulation no remetente ao acessar www.huawei.com no navegador (Slide 29):",
+      "items": [
+        "Application layer gera HTTP Data",
+        "Transport layer adiciona TCP Header -> Segment",
+        "Network layer adiciona IP Header -> Packet",
+        "Data Link layer adiciona Eth Header & FCS Trailer -> Frame",
+        "Physical layer converte o Frame em Bitstream no meio físico"
+      ],
+      "explanation": "O encapsulation ocorre de cima para baixo: Data -> TCP Segment -> IP Packet -> Ethernet Frame (com Eth Header + FCS trailer) -> Physical Bitstream."
+    }
+  }
+}

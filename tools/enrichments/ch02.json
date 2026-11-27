@@ -1,0 +1,217 @@
+{
+  "description": "Applications and binary data, standards organizations (IETF, IEEE, ISO), OSI vs. TCP/IP vs. Equivalent 5-layer model, core protocols across all 5 layers, and end-to-end encapsulation & decapsulation.",
+  "lessons": [
+    {
+      "id": "ch02-l1",
+      "title": "Applications, Data & Standards",
+      "sectionTitle": "Applications and Data",
+      "summary": "See how user information becomes 0s and 1s, trace a web request end-to-end, and distinguish IETF, IEEE, and ISO.",
+      "estimatedMinutes": 5,
+      "pages": [2, 3, 5, 6, 7, 9]
+    },
+    {
+      "id": "ch02-l2",
+      "title": "OSI vs. TCP/IP Reference Models",
+      "sectionTitle": "Network Reference Models and Standard Protocols",
+      "summary": "Compare the 7-layer OSI model, the 4-layer TCP/IP model, and the 5-layer Equivalent TCP/IP model plus PDUs at every layer.",
+      "estimatedMinutes": 5,
+      "pages": [10, 12, 14, 15]
+    },
+    {
+      "id": "ch02-l3",
+      "title": "Application & Transport Layers",
+      "sectionTitle": "Network Reference Models and Standard Protocols",
+      "summary": "Master well-known TCP/UDP ports (HTTP 80, DNS 53, Telnet 23, FTP 20/21, SMTP 25), DNS resolution, HTTP C/S flow, and TCP vs. UDP.",
+      "estimatedMinutes": 6,
+      "pages": [17, 18, 19, 20, 21]
+    },
+    {
+      "id": "ch02-l4",
+      "title": "Network Layer & IP Packet Forwarding",
+      "sectionTitle": "Network Reference Models and Standard Protocols",
+      "summary": "Learn how IPv4/IPv6 logical addressing, routing tables, next hops, OSPF/BGP, and ICMP work together to move packets across networks.",
+      "estimatedMinutes": 5,
+      "pages": [22, 23]
+    },
+    {
+      "id": "ch02-l5",
+      "title": "Data Link (Ethernet/PPP) & Physical Media",
+      "sectionTitle": "Network Reference Models and Standard Protocols",
+      "summary": "Study Ethernet & 48-bit MAC addresses, CSMA/CD history, PPP negotiation (LCP -> Auth -> NCP), and twisted pair, fiber, hybrid cables & Wi-Fi.",
+      "estimatedMinutes": 7,
+      "pages": [24, 25, 26, 27, 28, 30, 31]
+    },
+    {
+      "id": "ch02-l6",
+      "title": "Encapsulation, Decapsulation & Quiz",
+      "sectionTitle": "Data Communication Process",
+      "summary": "Walk step-by-step through sender encapsulation, Layer 2 switching vs. Layer 3 routing in transit, receiver decapsulation, and the official Quiz.",
+      "estimatedMinutes": 5,
+      "pages": [35, 37, 38, 39, 40]
+    }
+  ],
+  "vrpOverrides": {
+    "23": [
+      {
+        "title": "Verify Network-Layer Reachability & Routing (VRP Preview)",
+        "viewLabel": "User View <R1>",
+        "commands": [
+          {
+            "code": "<R1> ping 192.168.1.2",
+            "tokens": [
+              { "token": "ping", "meaning": "Uses ICMP Echo Request/Reply packets at the Network Layer to test end-to-end IP reachability." },
+              { "token": "192.168.1.2", "meaning": "Destination IPv4 address written in dotted-decimal notation (32 bits / 4 bytes)." }
+            ]
+          },
+          {
+            "code": "<R1> tracert 10.1.2.1",
+            "tokens": [
+              { "token": "tracert", "meaning": "Traces every Layer 3 router hop along the path to the destination using ICMP messages." },
+              { "token": "10.1.2.1", "meaning": "Target destination IPv4 address." }
+            ]
+          }
+        ]
+      }
+    ],
+    "26": [
+      {
+        "title": "Inspect Interface MAC Address on Huawei Switch",
+        "viewLabel": "User View <SW1>",
+        "commands": [
+          {
+            "code": "<SW1> display interface GigabitEthernet 0/0/1",
+            "tokens": [
+              { "token": "display", "meaning": "Queries interface parameters and statistics." },
+              { "token": "interface", "meaning": "Targets a specific physical interface." },
+              { "token": "GigabitEthernet 0/0/1", "meaning": "Shows the 48-bit (12-hex-digit) burned-in MAC address, link state, and frame counters." }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "challenges": [
+    {
+      "afterPage": 9,
+      "challenge": {
+        "id": "ch02-q1",
+        "type": "match-pairs",
+        "prompt": "Match each standards organization to its landmark networking contribution (Slide 9):",
+        "pairs": [
+          { "left": "IETF", "right": "Develops TCP/IP Internet protocols and publishes RFCs" },
+          { "left": "IEEE", "right": "Defines IEEE 802.3 (Ethernet) and IEEE 802.11 (Wi-Fi)" },
+          { "left": "ISO", "right": "Defined the 7-layer OSI reference model (ISO/IEC 7498-1)" }
+        ],
+        "explanation": "IETF publishes RFCs for TCP/IP, IEEE standardizes Ethernet (802.3) and Wi-Fi (802.11), and ISO published the OSI model."
+      }
+    },
+    {
+      "afterPage": 15,
+      "challenge": {
+        "id": "ch02-q2",
+        "type": "match-pairs",
+        "prompt": "Match each layer of the Equivalent TCP/IP model to its official Protocol Data Unit (PDU) name (Slides 13–26):",
+        "pairs": [
+          { "left": "Application layer", "right": "Data" },
+          { "left": "Transport layer", "right": "Segment" },
+          { "left": "Network layer", "right": "Packet" },
+          { "left": "Data link layer", "right": "Frame" },
+          { "left": "Physical layer", "right": "Bitstream" }
+        ],
+        "explanation": "Top to bottom PDUs in HCIA-Datacom: Application -> Data, Transport -> Segment, Network -> Packet, Data Link -> Frame, Physical -> Bitstream."
+      }
+    },
+    {
+      "afterPage": 17,
+      "challenge": {
+        "id": "ch02-q3",
+        "type": "fill-blank",
+        "prompt": "Fill in the standard transport protocols and port numbers from Slide 14:",
+        "template": "HTTP uses TCP port [0], Telnet uses TCP port [1], SMTP uses TCP port [2], and DNS uses UDP port [3].",
+        "bank": ["80", "23", "25", "53", "21"],
+        "correctTokens": ["80", "23", "25", "53"],
+        "explanation": "Memorize these HCIA staple ports: HTTP = 80 (TCP), SMTP = 25 (TCP), Telnet = 23 (TCP), FTP = 20 & 21 (TCP), DNS = 53 (UDP)."
+      }
+    },
+    {
+      "afterPage": 21,
+      "challenge": {
+        "id": "ch02-q4",
+        "type": "multi-select",
+        "prompt": "Which scenarios are best suited for UDP rather than TCP? (Slides 17–18)",
+        "options": [
+          "Real-time video calls where low latency matters more than retransmitting lost packets",
+          "File transfer requiring guaranteed zero-loss, in-order delivery",
+          "Quick DNS domain name queries",
+          "Online gaming traffic tolerant of minor packet loss"
+        ],
+        "correctIndices": [0, 2, 3],
+        "explanation": "UDP (RFC 768) is connectionless with ultra-low overhead and latency — ideal for video calls, online gaming, and DNS queries. File transfers and web browsing use reliable TCP (RFC 793)."
+      }
+    },
+    {
+      "afterPage": 23,
+      "challenge": {
+        "id": "ch02-q5",
+        "type": "multiple-choice",
+        "prompt": "When an intermediate router receives an IP packet, what does it look up to decide the next hop and outbound interface? (Slide 20)",
+        "options": [
+          "The destination MAC address in its local ARP table",
+          "The destination IP address in its routing table",
+          "The destination TCP port number in its session table",
+          "The Frame Check Sequence (FCS) trailer"
+        ],
+        "correctIndex": 1,
+        "explanation": "Routers inspect the destination IP address in the network-layer header and search their routing table (like a map) for a matching entry specifying the next hop and outbound interface."
+      }
+    },
+    {
+      "afterPage": 28,
+      "challenge": {
+        "id": "ch02-q6",
+        "type": "order-steps",
+        "prompt": "Order the three negotiation stages of PPP link establishment from first to last (Slide 25):",
+        "items": [
+          "LCP negotiation (Establish phase: MRU, working mode, auth method)",
+          "Authentication negotiation (Optional CHAP or PAP)",
+          "NCP negotiation (Network phase: IPCP / MPLSCP)"
+        ],
+        "correctOrder": [0, 1, 2],
+        "explanation": "PPP always negotiates link parameters first with LCP, optionally authenticates via CHAP or PAP, and finally negotiates network-layer parameters (like IP addresses) via NCP/IPCP."
+      }
+    },
+    {
+      "afterPage": 31,
+      "challenge": {
+        "id": "ch02-q7",
+        "type": "multiple-choice",
+        "prompt": "Which statement about transmission media is TRUE according to Slide 27?",
+        "options": [
+          "Cat 5e/Cat 6 twisted pair cables with RJ45 connectors support a maximum transmission distance of 100 m",
+          "Multimode fiber has less dispersion and larger capacity than single-mode fiber for long-distance links",
+          "Hybrid cable 2.0 requires separate RJ45 electrical and LC optical ports on the switch",
+          "UTP cables are more expensive and harder to bend than STP cables"
+        ],
+        "correctIndex": 0,
+        "explanation": "Twisted pair Cat 5/5e/6 cables with RJ45 connectors have a 100 m max distance. Single-mode fiber (not multimode) is for long-distance, UTP is cheaper/lighter than STP, and Hybrid cable 2.0 uses a single hybrid port."
+      }
+    },
+    {
+      "afterPage": 38,
+      "challenge": {
+        "id": "ch02-q8",
+        "type": "order-steps",
+        "prompt": "Trace Data Encapsulation on the Sender when a browser loads www.huawei.com (Slide 29):",
+        "items": [
+          "Application layer generates HTTP Data",
+          "Transport layer adds TCP Header -> Segment",
+          "Network layer adds IP Header -> Packet",
+          "Data Link layer adds Eth Header & FCS Trailer -> Frame",
+          "Physical layer converts Frame into Bitstream over media"
+        ],
+        "correctOrder": [0, 1, 2, 3, 4],
+        "explanation": "Encapsulation proceeds top-down: Data -> TCP Segment -> IP Packet -> Ethernet Frame (with Eth Header + FCS trailer) -> Physical Bitstream."
+      }
+    }
+  ]
+}

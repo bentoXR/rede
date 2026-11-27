@@ -1,0 +1,29 @@
+{
+  "name": "hcia-studio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Interactive warm-editorial study companion for Huawei HCIA-Datacom V2.0.",
+  "scripts": {
+    "dev": "vite --port 4173 --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 4173 --host 0.0.0.0",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
+    "lucide-react": "^0.511.0",
+    "motion": "^12.10.5",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.6",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "tailwindcss": "^4.1.6",
+    "typescript": "~5.8.2",
+    "vite": "^6.3.5"
+  }
+}

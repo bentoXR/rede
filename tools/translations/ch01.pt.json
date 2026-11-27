@@ -1,0 +1,506 @@
+{
+  "title": "Fundamentos de Data Communication Network",
+  "description": "Conceitos essenciais de sistemas de comunicação, topologias de rede, tipos LAN/MAN/WAN, dispositivos Huawei (switches, routers, firewalls, WLAN), chassis modulares vs. fixos e fluxo de packet encapsulation.",
+  "lessons": {
+    "ch01-l1": {
+      "title": "Comunicação & Evolução Tecnológica",
+      "sectionTitle": "Data Communication Network",
+      "summary": "Aprenda os três elementos de um sistema de comunicação e acompanhe a evolução desde sinais de fumaça até 5G/6G e IoE."
+    },
+    "ch01-l2": {
+      "title": "Redes & Topologias (Network Topologies)",
+      "sectionTitle": "Data Communication Network",
+      "summary": "Entenda exemplos de network communication, componentes de uma datacom network e compare topologias bus, star, ring, tree e mesh."
+    },
+    "ch01-l3": {
+      "title": "LAN, MAN, WAN & Enterprise Network",
+      "sectionTitle": "Data Communication Network",
+      "summary": "Classifique redes por cobertura geográfica (LAN, MAN, WAN) e por entidade operadora (Enterprise vs. Carrier network)."
+    },
+    "ch01-l4": {
+      "title": "Dispositivos Centrais (Network Devices)",
+      "sectionTitle": "Data Communication Network Devices",
+      "summary": "Domine o papel de switches (encaminhamento por MAC), routers (seleção de rotas por IP), firewalls (segurança de borda) e dispositivos WLAN (Fat/Fit/Cloud APs & WAC)."
+    },
+    "ch01-l5": {
+      "title": "Hardware Huawei & Fluxo de Dados",
+      "sectionTitle": "Data Communication Process",
+      "summary": "Explore o hardware de chassis modulares (MPU/SFU/LPU) vs. fixos e acompanhe o packet encapsulation do remetente ao destinatário com a analogia dos Correios."
+    },
+    "ch01-l6": {
+      "title": "Engenharia de Redes, Certificação & Quiz",
+      "sectionTitle": "Network Engineering & Network Engineers",
+      "summary": "Revise competências de network engineering, a trilha Huawei Datacom (HCIA -> HCIP -> HCIE) e resolva o Quiz oficial da Huawei."
+    }
+  },
+  "slides": {
+    "ch01-p02": {
+      "title": "Apresentação (Foreword)",
+      "slideBullets": [
+        "Desde as origens e o desenvolvimento da sociedade humana, a comunicação sempre foi uma companheira constante. Desde as décadas de 1970 e 1980, entramos na era da informação — e para quem vive nessa era, a necessidade de comunicação é indiscutível.",
+        "Neste curso, comunicação refere-se à transmissão de informações por meio de uma data communication network.",
+        "Este capítulo apresenta os conceitos de comunicação e data communication networks, tipos de rede e network topologies típicas, network devices e suas funções, além do processo de transmissão de informações e uma introdução a network engineering e ao papel dos network engineers."
+      ]
+    },
+    "ch01-p03": {
+      "title": "Objetivos do Capítulo (Objectives)",
+      "slideBullets": [
+        "Ao concluir este capítulo, você será capaz de:",
+        "Compreender os conceitos relacionados a network communication e data communication networks.",
+        "Entender os diferentes tipos de redes (LAN, MAN, WAN) e network topologies.",
+        "Diferenciar os tipos de network devices e compreender suas funções básicas.",
+        "Descrever o processo de transferência de informações (encapsulation e decapsulation).",
+        "Entender os conceitos de network engineering e o papel de network engineers."
+      ]
+    },
+    "ch01-p05": {
+      "title": "Comunicação (Communication)",
+      "notes": [
+        "Além dos três elementos do sistema de comunicação (Source, Channel e Destination), a comunicação possui os seguintes elementos-chave:",
+        "Information: conteúdo a ser transmitido, que pode estar em qualquer formato, como voz, texto, gráficos e dados.",
+        "Communication protocol: regras (como idioma, modo de codificação e padrão de comunicação) acordadas entre ambas as partes para garantir que a informação seja corretamente codificada, transmitida e decodificada."
+      ]
+    },
+    "ch01-p06": {
+      "title": "Evolução das Tecnologias de Comunicação",
+      "notes": [
+        "Ancient times (Antiguidade): Nesta era, a comunicação dependia totalmente dos meios naturais mais básicos, da força humana e da força animal.",
+        "Visual and auditory communication: como torres de sinalização (beacon towers), sinais de fumaça, tambores e trombetas. Transmitiam pouquíssima informação (geralmente sinais pré-combinados), alcançavam curtas distâncias e sofriam forte influência do clima e do relevo.",
+        "Postal communication: estações postais e sistemas de correio foram criados, com cartas transportadas por pessoas e cavalos. Permitiam enviar volumes maiores de informação, mas com velocidade extremamente baixa, levando dias ou até meses.",
+        "Electrical era (Era Elétrica): De meados do século XIX ao início do século XX, a invenção e a aplicação da eletricidade transformaram completamente a comunicação, permitindo pela primeira vez que a informação viajasse à velocidade da luz.",
+        "Telegraph (1830s–1840s): Pela primeira vez, pessoas puderam se comunicar instantaneamente a longas distâncias (atravessando continentes ou oceanos) com informações transmitidas por fios elétricos.",
+        "Telephone (1870s): A comunicação de voz bidirecional em tempo real tornou-se realidade, deixando a comunicação mais natural e direta.",
+        "Radio (1890s): O rádio libertou a comunicação das limitações dos fios físicos, lançando a base para a comunicação móvel e o broadcasting. O rádio AM/FM e a televisão dominaram a mídia de massa do século XX.",
+        "Information era (Era da Informação): De meados do século XX até hoje, a invenção dos transistores, circuitos integrados e computadores impulsionou a comunicação para uma nova era de digitalização e redes.",
+        "Computers and the Internet (1960s–1990s): O nascimento da ARPANET (Advanced Research Projects Agency Network) e a adoção do TCP/IP (Transmission Control Protocol/Internet Protocol) marcaram o início da era da Internet. A comunicação se expandiu além de humano-para-humano, evoluindo para interações machine-to-machine e network-to-network.",
+        "Mobile communication (1980s–presente):",
+        "1st generation (1G): comunicação de voz analógica, permitindo fazer ligações em movimento.",
+        "2nd generation (2G): comunicação de voz digital, introduzindo o SMS (Short Message Service).",
+        "3rd generation (3G): acesso à Internet móvel, permitindo navegar em páginas web e enviar/receber e-mails.",
+        "4th generation (4G): a verdadeira era da banda larga móvel, com explosão de vídeo HD fluido, jogos online e pagamentos móveis.",
+        "5th generation (5G): velocidade altíssima, latência ultrabaixa e conectividade massiva. Além da comunicação humana, impulsiona indústrias verticais como IoT (Internet of Things), direção autônoma, telemedicina e automação industrial.",
+        "1G/2G/3G/4G/5G: 1ª/2ª/3ª/4ª/5ª geração de tecnologia de comunicação móvel.",
+        "The era of Internet of Everything (IoE): As tecnologias de comunicação continuam acelerando.",
+        "Deepening of 5G and exploration of 6G: Versões evoluídas como 5G-A/5.5G ampliam ainda mais o desempenho. O 6G é esperado comercialmente por volta de 2030, mirando comunicação holográfica, interconexão sensorial e digital twins — a 'conectividade inteligente de tudo'.",
+        "Integration of IoT and Artificial Intelligence (AI): A comunicação se expande de humanos para todos os objetos do mundo. A IA potencializa as redes com agendamento inteligente de recursos, previsão de falhas e proteção de segurança, tornando-as mais eficientes e confiáveis."
+      ]
+    },
+    "ch01-p08": {
+      "title": "Comunicação em Rede (Network Communication)",
+      "notes": [
+        "Exemplos de network communication:",
+        "A. Quando dois computadores são conectados por um único cabo de rede, eles formam a data communication network mais simples possível.",
+        "B. Uma pequena data communication network pode ser montada com um network device (como um Router ou Switch) e vários computadores. Nessa rede, arquivos são transferidos livremente entre quaisquer dois computadores através do encaminhamento do dispositivo.",
+        "C. Quando um computador precisa baixar um arquivo de um site, ele primeiro precisa se conectar à Internet antes de realizar o download.",
+        "A Internet é atualmente a maior rede de computadores (data communication network) do mundo. Sua predecessora, a ARPANET, nasceu em 1969. A ampla popularização da Internet é um dos marcos da entrada na era da informação."
+      ]
+    },
+    "ch01-p09": {
+      "title": "Rede de Comunicação de Dados (Data Communication Network)",
+      "notes": [
+        "Ao longo deste curso, o termo data communication network será abreviado como datacom network."
+      ]
+    },
+    "ch01-p10": {
+      "title": "Topologia de Rede (Network Topology)",
+      "slideBullets": [
+        "Uma network topology é o layout estruturado que mostra como diversos network devices (como computadores, routers e switches) se conectam por meios de transmissão (como twisted pairs e optical fibers)."
+      ],
+      "notes": [
+        "Drawing network topologies: Dominar técnicas profissionais para desenhar diagramas de network topology é fundamental em network engineering e exige bastante prática."
+      ]
+    },
+    "ch01-p11": {
+      "title": "Tipos de Topologia (Network Topology Types)",
+      "notes": [
+        "Bus network: Todos os nós (nodes) são conectados através de um barramento único (como um cabo coaxial).",
+        "Advantage: Instalação simples e usa o mínimo de cabos. Em geral, a falha em um nó não derruba a comunicação da rede inteira.",
+        "Disadvantage: A falha no barramento (bus) derruba toda a rede. Além disso, os dados enviados por um nó chegam a todos os outros, o que é inseguro.",
+        "Star network: Todos os nós se conectam a um nó central (central node).",
+        "Advantage: Facilita adicionar novos nós à rede. Todo tráfego passa pelo nó central, o que facilita o monitoramento.",
+        "Disadvantage: A falha do nó central interrompe a comunicação de toda a rede (single point of failure).",
+        "Ring network: Todos os nós são conectados formando um anel fechado.",
+        "Advantage: Requer menos cabeamento.",
+        "Disadvantage: Adicionar um novo nó é inconveniente — é preciso romper o anel original para inserir o novo nó e fechar um novo anel.",
+        "Tree network: Na prática, é uma star topology hierárquica.",
+        "Advantage: Permite conectar várias star networks rapidamente, facilitando a expansão da rede.",
+        "Disadvantage: Quanto mais alto o nó na hierarquia, mais grave é o impacto de sua falha na rede.",
+        "Full-mesh network: Todos os nós são interconectados diretamente entre si por cabos.",
+        "Advantage: Altíssima confiabilidade (reliability) e eficiência de comunicação.",
+        "Disadvantage: Cada nó exige muitas portas físicas e cabos — tem alto custo e é difícil de escalar.",
+        "Partial-mesh network: Apenas os nós principais são interconectados entre si.",
+        "Advantage: Custo menor em comparação à full-mesh topology.",
+        "Disadvantage: Confiabilidade menor do que a de uma full-mesh topology."
+      ]
+    },
+    "ch01-p13": {
+      "title": "Tipos de Rede (Network Types)"
+    },
+    "ch01-p14": {
+      "title": "LAN, MAN e WAN",
+      "slideBullets": [
+        "As datacom networks podem ser classificadas em LAN, MAN e WAN de acordo com a sua cobertura geográfica."
+      ],
+      "notes": [
+        "WiMAX: Worldwide Interoperability for Microwave Access",
+        "PPP: Point-to-Point Protocol",
+        "MPLS: Multiprotocol Label Switching",
+        "SRv6: Segment Routing over IPv6"
+      ]
+    },
+    "ch01-p15": {
+      "title": "LAN, MAN e WAN no Setor Educacional"
+    },
+    "ch01-p16": {
+      "title": "Enterprise Network e Carrier Network",
+      "notes": [
+        "Note: Salvo indicação em contrário, sempre que este curso mencionar 'rede', estará se referindo a uma enterprise network.",
+        "VLAN: Virtual Local Area Network",
+        "VPN: Virtual Private Network",
+        "BGP: Border Gateway Protocol",
+        "SD-WAN: Software-Defined Wide Area Network"
+      ]
+    },
+    "ch01-p17": {
+      "title": "Enterprise Network em Cenários de Escritório",
+      "notes": [
+        "Uma office network é o cenário mais típico de uma enterprise network: conecta dispositivos de rede e terminais dentro da empresa, viabilizando compartilhamento de recursos e troca de informações, além de oferecer uma entrada unificada para recursos internos e serviços externos."
+      ]
+    },
+    "ch01-p19": {
+      "title": "Dispositivos de Rede (Network Devices)",
+      "notes": [
+        "A figura ilustra uma típica campus network corporativa de escritório.",
+        "Na sala de equipamentos do campus (campus equipment room), dispositivos de saída (egress devices) como routers e firewalls garantem comunicação segura com redes externas. Ao mesmo tempo, dispositivos core como core switches e WACs ficam ali para interconectar todo o tráfego interno do campus.",
+        "Empresas médias e grandes costumam ter data centers independentes. Dispositivos como switches e servers ficam em uma sala de data center conectada fisicamente ao core do campus, fornecendo aplicações e armazenamento para usuários internos ou externos.",
+        "Em cada andar do escritório, instala-se um access switch para conectar APs ou terminais cabeados daquele andar. Os APs irradiam sinais wireless permitindo que dispositivos sem fio acessem a rede."
+      ]
+    },
+    "ch01-p20": {
+      "title": "Switch",
+      "slideBullets": [
+        "Um Switch é um dispositivo central de uma datacom network: ele encaminha data frames com eficiência em uma LAN até o destino identificando o destination MAC address presente nos frames."
+      ],
+      "notes": [
+        "Dependendo do cenário de aplicação, switches podem ser classificados em campus switches e data center switches. Data center switches conectam servidores de computação e armazenamento garantindo encaminhamento rápido, confiável e preciso, e também existem nas versões fixed switch e modular switch.",
+        "MAC: Medium Access Control"
+      ],
+      "vrpBlocks": [
+        {
+          "title": "Inspecionar Hardware e Portas do Switch (Prévia VRP)",
+          "viewLabel": "User View <HUAWEI>",
+          "commands": [
+            {
+              "code": "<HUAWEI> display interface brief",
+              "tokens": [
+                { "token": "<HUAWEI>", "meaning": "Prompt da User view — permite consultas de status e diagnósticos sem alterar configurações." },
+                { "token": "display", "meaning": "Palavra-chave de consulta do Huawei VRP usada para inspecionar estados, tabelas e contadores." },
+                { "token": "interface brief", "meaning": "Exibe um resumo do status físico/lógico e velocidades de todas as portas do switch." }
+              ]
+            },
+            {
+              "code": "<HUAWEI> display mac-address",
+              "tokens": [
+                { "token": "display", "meaning": "Consulta o estado operacional atual do switch." },
+                { "token": "mac-address", "meaning": "Mostra a MAC address table usada pelo switch para encaminhar Ethernet frames na LAN." }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ch01-p21": {
+      "title": "Router",
+      "notes": [
+        "Um Router desempenha as seguintes funções: manutenção da routing table e das informações de roteamento, descoberta de rotas e seleção de caminho (path selection), encaminhamento de dados, acesso WAN, NAT (Network Address Translation) e funções específicas de segurança."
+      ],
+      "vrpBlocks": [
+        {
+          "title": "Inspecionar Routing Table do Router (Prévia VRP)",
+          "viewLabel": "User View <R1>",
+          "commands": [
+            {
+              "code": "<R1> display ip routing-table",
+              "tokens": [
+                { "token": "<R1>", "meaning": "Prompt da User view no roteador R1." },
+                { "token": "display", "meaning": "Comando de consulta para tabelas operacionais." },
+                { "token": "ip routing-table", "meaning": "Lista redes de destino conhecidas, máscaras, next hops e interfaces de saída usadas para path selection." }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ch01-p22": {
+      "title": "Firewall",
+      "slideBullets": [
+        "Um Firewall é um dispositivo de segurança de rede que monitora, restringe e protege o tráfego entre redes, isolando a rede interna da rede externa."
+      ],
+      "notes": [
+        "As principais funções de um Firewall incluem: isolar redes de diferentes níveis de segurança, aplicar controle de acesso entre zonas de segurança, autenticar identidades de usuários, viabilizar acesso remoto, fornecer criptografia de dados e serviços de VPN (Virtual Private Network), realizar NAT e outros recursos de segurança."
+      ]
+    },
+    "ch01-p23": {
+      "title": "Dispositivos Sem Fio (Wireless Device)",
+      "slideBullets": [
+        "Uma WLAN (Wireless LAN) utiliza tecnologias sem fio para permitir que terminais acessem a rede usando sinais wireless.",
+        "Os dispositivos wireless comuns incluem Fat APs, Fit APs e WACs, responsáveis por acesso de usuários, autenticação e encaminhamento de serviços (a figura ilustra o cenário típico Fit AP + WAC)."
+      ],
+      "notes": [
+        "Em sentido amplo, uma WLAN usa sinais sem fio (como ondas de rádio, laser ou infravermelho) no lugar dos cabos tradicionais de uma LAN cabeada. O popular Wi-Fi refere-se à tecnologia WLAN baseada no padrão IEEE 802.11.",
+        "Os dispositivos comuns de WLAN são APs e WACs.",
+        "AP:",
+        "Suporta múltiplos modos de operação — Fat AP, Fit AP e Cloud AP — permitindo alternar conforme o projeto da rede.",
+        "Fat AP: opera de forma independente e precisa ser configurado individualmente. Oferece apenas funções básicas, tem baixo custo e é indicado para uso doméstico.",
+        "Fit AP: precisa trabalhar em conjunto com um WAC, que gerencia e configura todos os Fit APs de forma unificada. Oferece recursos avançados e é indicado para médias e grandes empresas.",
+        "Cloud AP: trabalha integrado a uma plataforma de gerenciamento em nuvem, com provisionamento plug-and-play e recursos completos. Ideal para pequenas e médias empresas.",
+        "WAC:",
+        "Normalmente posicionado na camada aggregation ou core da rede, entrega serviços WLAN rápidos, seguros e confiáveis.",
+        "Oferece alta capacidade e alto desempenho, grande confiabilidade, facilidade de manutenção, flexibilidade de rede e economia de energia.",
+        "Note: O IEEE (Institute of Electrical and Electronics Engineers) é uma organização especializada em engenharia elétrica e eletrônica."
+      ]
+    },
+    "ch01-p25": {
+      "title": "Diagrama de Conexão Física (Physical Connection Diagram)",
+      "notes": [
+        "Os network devices modernos não se limitam mais a uma única função: hoje um switch pode integrar switching e routing, e um router pode integrar routing, segurança e wireless. Por isso, ao escolher equipamentos e projetar uma rede, é essencial entender os recursos de cada dispositivo com uma visão completa dos requisitos de serviço."
+      ]
+    },
+    "ch01-p26": {
+      "title": "Composição dos Dispositivos (Modular vs. Fixed)",
+      "slideBullets": [
+        "Switches, routers e firewalls possuem estruturas semelhantes e se dividem em modular devices e fixed devices. Este curso usa o modular switch CloudEngine S12700H-8 e o fixed switch CloudEngine S5755-H24T4Y2CZ como exemplos."
+      ]
+    },
+    "ch01-p27": {
+      "title": "Estrutura de Chassi de Dispositivos Modulares",
+      "notes": [
+        "Funções das placas (Boards):",
+        "MPU (Main Processing Unit): componente obrigatório que controla, gerencia e monitora o sistema.",
+        "SFU (Switch Fabric Unit): componente obrigatório que implementa controle, monitoramento e troca de dados (data exchange) entre placas.",
+        "LPU (Line Processing Unit): componente opcional que processa data packets e gerencia o tráfego das portas.",
+        "SPU (Service Processing Unit): componente opcional que executa processamento de serviços de valor agregado nos packets.",
+        "CMU (Central Management Unit): componente opcional que monitora o ambiente e permite configurar limites de temperatura ambiente.",
+        "Estrutura do chassi CloudEngine S12700H-8:",
+        "1. Chassis header (cabeçote do chassi)",
+        "2. MPU",
+        "3. Cable manager: organiza e separa os cabos de diferentes slots.",
+        "4. SFU",
+        "5. LPU",
+        "6. Quatro módulos de energia — power modules (PWR)",
+        "7. CMU",
+        "8. Conector ESD (Electrostatic Discharge) frontal: entrada para pulseira antiestática (só funciona com o equipamento corretamente aterrado).",
+        "9. Dois módulos de ventilação (fan modules)",
+        "10. Ponto de aterramento (ground point) com terminal OT de dois furos e etiqueta amarela de aterramento."
+      ],
+      "vrpBlocks": [
+        {
+          "title": "Verificar Placas do Chassi Modular (MPU / SFU / LPU)",
+          "viewLabel": "User View <Core-Switch>",
+          "commands": [
+            {
+              "code": "<Core-Switch> display device",
+              "tokens": [
+                { "token": "display", "meaning": "Consulta o status de hardware e software do equipamento." },
+                { "token": "device", "meaning": "Lista todas as placas MPU, SFU, LPU, SPU, fontes e ventoinhas instaladas com o status de cada slot." }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "ch01-p29": {
+      "title": "Estrutura de Chassi de Dispositivos Fixos",
+      "notes": [
+        "Estrutura do chassi CloudEngine S5755-H24T4Y2CZ:",
+        "1. Um botão PNP:",
+        "Segurar por pelo menos 6 segundos: restaura as configurações de fábrica e reinicia o equipamento.",
+        "Pressionar rapidamente: reinicia (reset) o dispositivo.",
+        "Atenção: reiniciar o dispositivo interrompe os serviços em andamento — use com cautela.",
+        "2. Um botão MODE",
+        "3. 24 portas × 10/100/1000BASE-T",
+        "4. 4 portas × GE/10GE/25GE SFP28",
+        "5. 2 portas × 40GE/100GE QSFP28",
+        "6. Parafuso de aterramento (ground screw)",
+        "7. Uma console port",
+        "8. Uma porta USB",
+        "9. Uma porta de gerenciamento ETH (management port)",
+        "10. Slot de placa de expansão (card slot)",
+        "11. Slot de ventoinha 1 (Fan module slot 1)",
+        "12. Slot de ventoinha 2 (Fan module slot 2)",
+        "13. Slot de fonte 1 (Power module slot 1)",
+        "14. Slot de fonte 2 (Power module slot 2)"
+      ]
+    },
+    "ch01-p30": {
+      "title": "Diagrama Lógico de Conexão dos Módulos",
+      "notes": [
+        "Em um fixed device, todos esses módulos funcionais vêm integrados no mesmo chassi e se comunicam por meio de conexões internas."
+      ]
+    },
+    "ch01-p32": {
+      "title": "Processo de Comunicação de Dados (Data Communication Process)",
+      "notes": [
+        "Embalagem e etiquetagem (remetente / sender):",
+        "Sender (Correios): O item é embalado em um pacote com uma etiqueta contendo o endereço do remetente e do destinatário.",
+        "Data sender (Rede): A aplicação encapsula o 'data payload' original adicionando um 'header' e um 'trailer' para formar um packet. A informação essencial no packet são os endereços de origem e destino ('source address' e 'destination address').",
+        "Despacho local (primeira estação de transferência):",
+        "Parcel pickup station: O pacote chega à agência local, que verifica o endereço do destinatário e encaminha para o próximo transporte.",
+        "Gateway: O packet viaja pelo cabo de rede até o 'gateway'. O gateway faz o decapsulation, lê o destination address, re-encapsula e envia o packet para fora da rede local rumo aos 'routers'.",
+        "Triagem e transporte na rede (nós intermediários):",
+        "Parcel sorting center: O centro de triagem da cidade despacha os volumes para o centro de triagem da cidade de destino conforme o endereço.",
+        "Routers e Internet backbone: Os routers intermediários repetem decapsulation e encapsulation continuamente e enviam o packet pelo Internet backbone até alcançar a rede de destino.",
+        "Entrega final e recepção (destinatário / receiver):",
+        "Recipient: O centro de triagem de destino encaminha o pacote até o destinatário, que abre a embalagem e confirma que o item chegou íntegro.",
+        "Data receiver: O packet chega ao gateway da rede de destino, passa novamente por decapsulation/encapsulation e é entregue ao computador correto pelo destination address. O computador valida o packet e entrega o data payload à aplicação correspondente — encerrando o processo completo."
+      ]
+    },
+    "ch01-p34": {
+      "title": "Termos Comuns (Common Terms)",
+      "notes": [
+        "Data payload: É a informação real que se deseja transmitir. Em uma arquitetura em camadas, o packet entregue por um protocolo de camada superior a um protocolo de camada inferior atua como o data payload da camada inferior.",
+        "Packet: Unidade de dados trocada e transmitida na rede com formato interno definido — normalmente 'header + data payload + trailer'. Durante o percurso, seu formato e conteúdo podem mudar.",
+        "Header: Bloco de informações de controle adicionado antes do data payload ao montar um packet.",
+        "Trailer: Bloco de informações adicionado após o data payload ao montar um packet. Atenção: muitos packets não possuem trailer.",
+        "Encapsulation: Técnica de protocolos em camadas onde o protocolo inferior recebe uma mensagem do protocolo superior e a anexa como parte do seu data payload.",
+        "Decapsulation: Processo inverso ao encapsulation — remove o header e o trailer de um packet para recuperar o data payload.",
+        "Gateway: Dispositivo de rede usado para conectar redes com arquiteturas ou protocolos diferentes (conversão de protocolo, seleção de rotas e troca de dados). Importante: 'gateway' é um termo definido pela função e posição na rede, não por um único modelo físico de equipamento.",
+        "Terminal: Dispositivo final (end device) de um sistema de comunicação de dados que atua como remetente ou destinatário — como computador, servidor ou celular."
+      ]
+    },
+    "ch01-p36": {
+      "title": "Jornada Deste Curso (Journey of This Course)"
+    },
+    "ch01-p38": {
+      "title": "Engenharia de Redes (Network Engineering)",
+      "slideBullets": [
+        "Network engineering:"
+      ],
+      "notes": [
+        "Network engineering refere-se a um conjunto de atividades centradas em redes, incluindo planejamento (planning), projeto (design), implantação (implementation), testes e solução de problemas (troubleshooting).",
+        "O domínio de conhecimento de network engineering é amplo, e routing e switching formam a base fundamental das redes de computadores."
+      ]
+    },
+    "ch01-p39": {
+      "title": "Engenheiro de Redes (Network Engineer)",
+      "slideBullets": [
+        "Network engineer:",
+        "Profissional de network engineering que domina tecnologias de rede, habilidades práticas e qualidades profissionais para planejar, implantar, entregar documentação e treinar clientes."
+      ]
+    },
+    "ch01-p40": {
+      "title": "Trilha de Crescimento Técnico do Network Engineer",
+      "notes": [
+        "OSPF: Open Shortest Path First"
+      ]
+    },
+    "ch01-p41": {
+      "title": "Certificação Huawei no Desenvolvimento de Talentos",
+      "notes": [
+        "ICT: Information & Communications Technology"
+      ]
+    },
+    "ch01-p42": {
+      "title": "Sistema de Certificação Huawei Datacom"
+    },
+    "ch01-p43": {
+      "title": "Quiz Oficial Huawei — Fundamentos de Data Communication Network",
+      "slideBullets": [
+        "1. (Questão de múltipla escolha / Multiple-answer) Quais dos tipos de comunicação abaixo pertencem a network communications? (   )",
+        "A. Sinais de tambor (Drum signaling)",
+        "B. Pombo-correio (Pigeon post)",
+        "C. Enviar um e-mail (Sending an email)",
+        "D. Transferir arquivos através de cabos de rede (Transferring files through network cables)"
+      ],
+      "notes": [
+        "1. CD (Enviar e-mail e transferir arquivos por cabos de rede utilizam data communication networks.)"
+      ]
+    },
+    "ch01-p44": {
+      "title": "Resumo do Capítulo (Summary)",
+      "slideBullets": [
+        "Este capítulo apresentou os conceitos de network communication e data communication networks, cuja função básica é viabilizar a comunicação em rede.",
+        "Para dominar data communication networks, é indispensável compreender seus conceitos e componentes essenciais: network topologies, tipos de rede e os vários network devices e suas funções.",
+        "Por fim, vimos o conceito de network engineering e o papel do network engineer. Além das competências profissionais fundamentais, a certificação Huawei Datacom oferece uma trilha estruturada para desenvolver essas habilidades."
+      ]
+    }
+  },
+  "challenges": {
+    "ch01-q1": {
+      "prompt": "Ordene estes marcos da evolução das comunicações do mais antigo para o mais recente (Slide 6):",
+      "items": [
+        "Sinais visuais e auditivos (Beacon fires, ~3000 BCE)",
+        "Telégrafo por fios elétricos (Telegraph, 1830s)",
+        "ARPANET e redes de computadores (1960s–1970s)",
+        "5G — conectividade de tudo (Late 2010s)"
+      ],
+      "explanation": "A evolução seguiu: Ancient times (~3000 BCE) -> Electrical era (1830s Telegraph) -> Information era (1960s–1970s ARPANET) -> IoE era (final dos anos 2010 com 5G e futuro 6G)."
+    },
+    "ch01-q2": {
+      "prompt": "Associe cada network topology à sua característica oficial da apostila Huawei (Slide 10):",
+      "pairs": [
+        { "left": "Bus network", "right": "Falha no barramento derruba toda a rede; tráfego inseguro" },
+        { "left": "Star network", "right": "Fácil adicionar nós e monitorar, mas o nó central é ponto único de falha" },
+        { "left": "Ring network", "right": "Usa menos cabos, mas exige romper o anel para inserir novo nó" },
+        { "left": "Full-mesh network", "right": "Máxima confiabilidade e eficiência, porém cara e difícil de escalar" }
+      ],
+      "explanation": "Redes reais combinam topologias equilibrando custo, desempenho e confiabilidade. Star facilita expansão; Full-mesh maximiza redundância com alto custo de portas e cabos."
+    },
+    "ch01-q3": {
+      "prompt": "Qual tipo de rede cobre de dezenas a milhares de quilômetros conectando LANs ou MANs distantes usando tecnologias como PPP, MPLS e SRv6?",
+      "options": [
+        "Local Area Network (LAN)",
+        "Metropolitan Area Network (MAN)",
+        "Wide Area Network (WAN)",
+        "Office Access Network"
+      ],
+      "explanation": "Uma WAN abrange de dezenas a milhares de quilômetros entre cidades ou países e utiliza tecnologias como PPP, MPLS e SRv6 (Slide 12)."
+    },
+    "ch01-q4": {
+      "prompt": "Complete a diferença central de encaminhamento entre Switch e Router (Slides 18–19):",
+      "template": "Um Switch encaminha data frames na LAN usando o endereço [0] de destino, enquanto um Router seleciona caminhos para data packets usando o endereço [1] de destino.",
+      "bank": ["MAC", "IP", "port", "VLAN"],
+      "correctTokens": ["MAC", "IP"],
+      "explanation": "Switches analisam o destination MAC address dentro dos data frames na LAN; Routers inspecionam o destination IP address dos data packets para escolher o next hop."
+    },
+    "ch01-q5": {
+      "prompt": "Qual modo de AP da Huawei é gerenciado de forma centralizada por um Wireless Access Controller (WAC) e é indicado para médias e grandes empresas?",
+      "options": [
+        "Fat AP",
+        "Fit AP",
+        "Standalone Home AP",
+        "Passive Repeater"
+      ],
+      "explanation": "O Fit AP trabalha obrigatoriamente junto com um WAC para gerenciamento unificado, sendo ideal para médias e grandes empresas. Fat APs operam sozinhos em uso doméstico (Slide 21)."
+    },
+    "ch01-q6": {
+      "prompt": "Associe cada placa do chassi modular Huawei CloudEngine S12700H-8 à sua função de hardware (Slides 24 e 26):",
+      "pairs": [
+        { "left": "MPU", "right": "Placa obrigatória que controla, gerencia e monitora o sistema" },
+        { "left": "SFU", "right": "Matriz obrigatória (switch fabric) que encaminha tráfego entre LPUs" },
+        { "left": "LPU", "right": "Placa opcional que processa data packets e gerencia tráfego das portas" },
+        { "left": "CMU", "right": "Placa opcional que monitora temperatura ambiente e condições físicas" }
+      ],
+      "explanation": "No chassi modular, MPU (controle) e SFU (matriz de comutação) são obrigatórias; as LPUs fornecem interfaces de linha e se comunicam através das SFUs."
+    },
+    "ch01-q7": {
+      "prompt": "Quais DUAS afirmações descrevem corretamente encapsulation e common terms? (Slides 28–29)",
+      "options": [
+        "Encapsulation adiciona um header (e opcionalmente um trailer) a um data payload",
+        "Gateway é um modelo físico específico de hardware sem função de roteamento",
+        "Decapsulation remove o header e o trailer para recuperar o data payload",
+        "Todo network packet é obrigado a possuir um trailer"
+      ],
+      "explanation": "Encapsulation envolve o payload com header/trailer e decapsulation faz o inverso. A Huawei destaca explicitamente que muitos packets não têm trailer, e 'gateway' é definido pela posição/função na rede."
+    },
+    "ch01-q8": {
+      "prompt": "Ordene os níveis da Certificação Huawei Datacom do inicial até o especialista (Slides 35–36):",
+      "items": [
+        "HCIA-Datacom (Associate)",
+        "HCIP-Datacom (Professional)",
+        "HCIE-Datacom (Expert)"
+      ],
+      "explanation": "A trilha hierárquica da Huawei evolui de Associate (HCIA) -> Professional (HCIP) -> Expert (HCIE)."
+    }
+  }
+}
