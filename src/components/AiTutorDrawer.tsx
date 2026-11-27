@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Loader2, Send, Settings, Sparkles, X } from "lucide-react";
+import { Loader2, Send, Sparkles, X } from "lucide-react";
 import { askHciaTutor, type TutorContextPayload, type TutorMessage } from "../lib/tutor";
 import type { CloudSettings, LanguagePref } from "../types/progress";
 import { t } from "../i18n/ui";
@@ -10,7 +10,6 @@ interface AiTutorDrawerProps {
   settings: CloudSettings;
   lang: LanguagePref;
   onClose: () => void;
-  onOpenSettings: () => void;
 }
 
 function formatBoldSegments(text: string): React.ReactNode {
@@ -43,7 +42,6 @@ export const AiTutorDrawer: React.FC<AiTutorDrawerProps> = ({
   settings,
   lang,
   onClose,
-  onOpenSettings,
 }) => {
   const ui = t(lang);
   const [messages, setMessages] = useState<TutorMessage[]>([]);
@@ -63,8 +61,6 @@ export const AiTutorDrawer: React.FC<AiTutorDrawerProps> = ({
 
   if (!open || !context) return null;
 
-  const isConfigured = Boolean(settings.tutorWorkerUrl.trim() || settings.geminiApiKey.trim());
-
   const sendQuestion = async (q: string) => {
     const trimmed = q.trim();
     if (!trimmed || loading) return;
@@ -78,11 +74,7 @@ export const AiTutorDrawer: React.FC<AiTutorDrawerProps> = ({
       setMessages([...nextHistory, { role: "assistant", content: reply }]);
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Falha ao conectar com o tutor.";
-      if (msg === "TUTOR_NOT_CONFIGURED") {
-        setError(ui.tutorReadyDesc);
-      } else {
-        setError(msg);
-      }
+      setError(msg);
     } finally {
       setLoading(false);
     }
@@ -129,26 +121,6 @@ export const AiTutorDrawer: React.FC<AiTutorDrawerProps> = ({
                 {ui.selectedExcerpt}
               </p>
               <p className="mt-1 italic">"{context.selectedQuote}"</p>
-            </div>
-          )}
-
-          {!isConfigured && (
-            <div className="rounded-2xl border border-blue-200 bg-blue-50/70 p-4 text-sm text-blue-950">
-              <p className="font-display font-extrabold">{ui.tutorReadyTitle}</p>
-              <p className="mt-1 text-xs leading-relaxed font-medium text-blue-900">
-                {ui.tutorReadyDesc}
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  onClose();
-                  onOpenSettings();
-                }}
-                className="mt-3 inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-3.5 py-2 font-display text-xs font-bold text-white hover:bg-blue-700"
-              >
-                <Settings className="h-3.5 w-3.5" />
-                <span>{ui.openAiSettings}</span>
-              </button>
             </div>
           )}
 

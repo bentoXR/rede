@@ -1,270 +1,200 @@
 import React from "react";
-import {
-  ArrowRight,
-  Bookmark,
-  BookOpen,
-  CheckCircle2,
-  Clock,
-  Cloud,
-  Flame,
-  Layers,
-  Sparkles,
-} from "lucide-react";
-import type { ChapterData, CourseManifest } from "../types/content";
-import type { LanguagePref, SessionDuration, UserProgress } from "../types/progress";
-import type { DailySessionPlan } from "../lib/sessionBuilder";
-import { t } from "../i18n/ui";
+import { ArrowRight, CheckCircle2, Clock, Compass, Play } from "lucide-react";
+import type { ChapterData, CourseManifest, LessonData } from "../types/content";
+import type { UserProgress } from "../types/progress";
 
 interface HomeDashboardProps {
   manifest: CourseManifest;
   loadedChapters: ChapterData[];
   progress: UserProgress;
-  lang: LanguagePref;
-  selectedDuration: SessionDuration;
-  onSelectDuration: (d: SessionDuration) => void;
-  sessionPlan: DailySessionPlan;
-  onStartSession: () => void;
-  onOpenChapters: () => void;
-  onOpenVault: () => void;
-  onOpenSettings: () => void;
-  cloudConnectedEmail: string | null;
+  nextSuggested: { chapter: ChapterData; lesson: LessonData } | null;
+  onOpenLesson: (chapter: ChapterData, lesson: LessonData) => void;
 }
 
 export const HomeDashboard: React.FC<HomeDashboardProps> = ({
   manifest,
   loadedChapters,
   progress,
-  lang,
-  selectedDuration,
-  onSelectDuration,
-  sessionPlan,
-  onStartSession,
-  onOpenChapters,
-  onOpenVault,
-  onOpenSettings,
-  cloudConnectedEmail,
+  nextSuggested,
+  onOpenLesson,
 }) => {
-  const ui = t(lang);
-
-  const readyStepTotal = loadedChapters.reduce(
-    (sum, ch) => sum + ch.lessons.reduce((lSum, l) => lSum + l.steps.length, 0),
-    0
-  );
-  const completedReadySteps = progress.completedStepIds.length;
-  const readyPct =
-    readyStepTotal > 0 ? Math.min(100, Math.round((completedReadySteps / readyStepTotal) * 100)) : 0;
-
-  const reviewVaultCount =
-    progress.bookmarkedStepIds.length +
-    progress.highlights.length +
-    Object.values(progress.challengeResults).filter((r) => r.needsReview).length;
-
-  const durations: Array<{ min: SessionDuration; tag: string; desc: string }> = [
-    { min: 5, tag: ui.dur5Tag, desc: ui.dur5Desc },
-    { min: 15, tag: ui.dur15Tag, desc: ui.dur15Desc },
-    { min: 30, tag: ui.dur30Tag, desc: ui.dur30Desc },
-  ];
+  const upcomingChapters = manifest.chapters.filter((c) => !c.ready);
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6]">
-      <header className="mx-auto flex max-w-4xl flex-wrap items-center justify-between gap-3 px-5 pt-6 pb-4">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#18181B] font-display text-sm font-extrabold text-white shadow-xs">
-            HC
-          </div>
-          <div>
-            <p className="font-display text-base font-extrabold text-[#111827]">HCIA Studio</p>
-            <p className="text-xs font-semibold text-zinc-500">
-              {manifest.courseTitle} · {ui.editionLabel}
-            </p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <div
-            className="inline-flex items-center gap-1.5 rounded-full border border-amber-300/80 bg-amber-50 px-3 py-1.5 font-display text-xs font-extrabold text-amber-900"
-            title={ui.dayStreak}
-          >
-            <Flame className="h-3.5 w-3.5 fill-amber-500 text-amber-600" />
-            <span>{progress.streak.current}d</span>
-          </div>
-
-          <button
-            type="button"
-            onClick={onOpenVault}
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#E2DDD3] bg-white px-3 py-1.5 font-display text-xs font-bold text-zinc-800 transition hover:border-zinc-400"
-          >
-            <Bookmark className="h-3.5 w-3.5 text-amber-600" />
-            <span>
-              {ui.vault} ({reviewVaultCount})
-            </span>
-          </button>
-
-          <button
-            type="button"
-            onClick={onOpenSettings}
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#E2DDD3] bg-white px-3 py-1.5 font-display text-xs font-bold text-zinc-800 transition hover:border-zinc-400"
-            title={ui.settingsTitle}
-          >
-            <Cloud
-              className={`h-3.5 w-3.5 ${cloudConnectedEmail ? "text-emerald-600" : "text-zinc-500"}`}
-            />
-            <span className="hidden sm:inline">
-              {cloudConnectedEmail ? ui.synced : ui.syncAndAi}
-            </span>
-          </button>
-        </div>
-      </header>
-
-      <main className="mx-auto max-w-4xl px-5 pt-4 pb-16">
-        <section className="rounded-3xl border border-[#E6E1D6] bg-white p-6 sm:p-10 shadow-sm">
+    <div className="mx-auto max-w-4xl px-5 py-7 sm:py-9 space-y-8">
+      {/* Suggested next lesson banner (keeps the thread without locking anything) */}
+      {nextSuggested && (
+        <section className="rounded-3xl border border-[#E6E1D6] bg-white p-6 sm:p-8 shadow-xs">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 font-display text-xs font-extrabold tracking-wide text-blue-700 uppercase">
-              <Sparkles className="h-3.5 w-3.5" />
-              <span>{ui.dailySessionMode}</span>
+              <Compass className="h-3.5 w-3.5" />
+              <span>Continuar na ordem sugerida</span>
             </span>
-            <span className="text-xs font-bold text-zinc-500">{ui.zeroFriction}</span>
+            <span className="text-xs font-semibold text-zinc-500">
+              Acesso livre · pule para qualquer capítulo quando quiser
+            </span>
           </div>
 
-          <h1 className="mt-4 font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-[#111827]">
-            {ui.heroQuestion}
-          </h1>
-          <p className="mt-2 max-w-2xl text-[16.5px] leading-relaxed font-medium text-zinc-600">
-            {ui.heroDescPrefix}
-            <strong className="font-bold text-zinc-900">{ui.heroDescHighlight}</strong>
-            {ui.heroDescSuffix}
+          <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+            <div className="min-w-0">
+              <p className="font-display text-xs font-bold text-blue-700">
+                Cap. {String(nextSuggested.chapter.number).padStart(2, "0")} ·{" "}
+                {nextSuggested.chapter.title}
+              </p>
+              <h1 className="mt-1 font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-[#111827]">
+                {nextSuggested.lesson.number} · {nextSuggested.lesson.title}
+              </h1>
+              <p className="mt-1.5 text-sm sm:text-base font-medium text-zinc-600">
+                {nextSuggested.lesson.summary}
+              </p>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => onOpenLesson(nextSuggested.chapter, nextSuggested.lesson)}
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-[#18181B] px-6 py-3.5 font-display text-sm font-extrabold text-white shadow-sm transition hover:bg-blue-700"
+            >
+              <span>Abrir Lição</span>
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
+        </section>
+      )}
+
+      {/* Open catalog of ready chapters & lessons */}
+      <section className="space-y-5">
+        <div>
+          <h2 className="font-display text-lg font-extrabold text-[#111827]">
+            Capítulos Disponíveis Agora
+          </h2>
+          <p className="text-xs sm:text-sm font-medium text-zinc-500">
+            Clique em qualquer lição para abrir o conteúdo completo em rolagem contínua.
           </p>
+        </div>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            {durations.map((d) => {
-              const active = selectedDuration === d.min;
-              return (
-                <button
-                  key={d.min}
-                  type="button"
-                  onClick={() => onSelectDuration(d.min)}
-                  className={`rounded-2xl border-2 p-4 text-left transition ${
-                    active
-                      ? "border-[#18181B] bg-[#FCFBF8] shadow-xs ring-2 ring-zinc-900/10"
-                      : "border-[#E8E4DC] bg-white hover:border-zinc-400"
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-display text-2xl font-extrabold text-[#111827]">
-                      {d.min} min
-                    </span>
-                    <Clock className={`h-4 w-4 ${active ? "text-blue-600" : "text-zinc-400"}`} />
-                  </div>
-                  <p className="mt-1 font-display text-xs font-extrabold text-blue-700 uppercase">
-                    {d.tag}
-                  </p>
-                  <p className="mt-0.5 text-xs font-semibold text-zinc-500">{d.desc}</p>
-                </button>
-              );
-            })}
-          </div>
+        <div className="space-y-5">
+          {loadedChapters.map((chapter) => {
+            const doneCount = chapter.lessons.filter((l) =>
+              progress.completedLessonIds.includes(l.id)
+            ).length;
 
-          <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-[#ECE7DD] bg-[#FAF9F6] p-4 sm:p-5">
-            <div>
-              <p className="font-display text-xs font-extrabold tracking-wider text-zinc-500 uppercase">
-                {ui.upNext}
-              </p>
-              <p className="mt-1 font-display text-lg font-extrabold text-[#111827]">
-                {sessionPlan.headline}
-              </p>
-              <p className="text-sm font-semibold text-zinc-600">{sessionPlan.subline}</p>
-            </div>
-
-            <button
-              type="button"
-              onClick={onStartSession}
-              disabled={sessionPlan.items.length === 0}
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-2xl bg-[#18181B] px-7 py-4 font-display text-base font-extrabold text-white shadow-md transition hover:bg-blue-700 disabled:opacity-40"
-            >
-              <span>{ui.startSession(selectedDuration)}</span>
-              <ArrowRight className="h-5 w-5" />
-            </button>
-          </div>
-        </section>
-
-        <section className="mt-6 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-2xl border border-[#E8E4DC] bg-white p-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Layers className="h-4 w-4 text-blue-600" />
-                <h2 className="font-display text-sm font-extrabold text-[#111827]">
-                  {ui.curriculumProgress}
-                </h2>
-              </div>
-              <span className="font-display text-sm font-extrabold text-blue-700">{readyPct}%</span>
-            </div>
-
-            <div className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-[#EFECE4]">
+            return (
               <div
-                className="h-full rounded-full bg-emerald-600 transition-all duration-500"
-                style={{ width: `${readyPct}%` }}
-              />
-            </div>
-
-            <div className="mt-3 flex items-center justify-between text-xs font-semibold text-zinc-600">
-              <span>{ui.convertedSteps(completedReadySteps, readyStepTotal)}</span>
-              <span>
-                {ui.chaptersReady(
-                  manifest.chapters.filter((c) => c.ready).length,
-                  manifest.chapters.length
-                )}
-              </span>
-            </div>
-
-            <button
-              type="button"
-              onClick={onOpenChapters}
-              className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[#E2DDD3] bg-[#FCFBF8] px-4 py-2.5 font-display text-sm font-bold text-zinc-900 transition hover:border-zinc-400 hover:bg-white"
-            >
-              <BookOpen className="h-4 w-4 text-blue-600" />
-              <span>{ui.browseAll}</span>
-            </button>
-          </div>
-
-          <div className="rounded-2xl border border-[#E8E4DC] bg-white p-6">
-            <h2 className="font-display text-sm font-extrabold text-[#111827]">
-              {ui.readyNowTitle}
-            </h2>
-            <p className="mt-1 text-xs font-semibold text-zinc-500">{ui.readyNowDesc}</p>
-            <div className="mt-3.5 space-y-2.5">
-              {loadedChapters.map((ch) => {
-                const steps = ch.lessons.flatMap((l) => l.steps);
-                const doneCount = steps.filter((s) =>
-                  progress.completedStepIds.includes(s.id)
-                ).length;
-                const doneAll = steps.length > 0 && doneCount === steps.length;
-                return (
-                  <button
-                    key={ch.id}
-                    type="button"
-                    onClick={onOpenChapters}
-                    className="flex w-full items-center justify-between rounded-xl border border-[#ECE7DD] bg-[#FAF9F6] px-3.5 py-2.5 text-left transition hover:border-blue-400 hover:bg-white"
-                  >
-                    <div className="min-w-0 pr-2">
-                      <p className="truncate font-display text-sm font-bold text-[#111827]">
-                        {String(ch.number).padStart(2, "0")} · {ch.title}
-                      </p>
-                      <p className="text-xs font-semibold text-zinc-500">
-                        {ui.lessonsAndSteps(ch.lessons.length, doneCount, steps.length)}
-                      </p>
+                key={chapter.id}
+                className="overflow-hidden rounded-3xl border border-[#E6E1D6] bg-white shadow-2xs"
+              >
+                <div className="border-b border-[#F0ECE3] bg-[#FCFBF8] px-6 py-5">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#18181B] font-display text-sm font-extrabold text-white">
+                        {String(chapter.number).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <h3 className="font-display text-lg font-extrabold text-[#111827]">
+                          {chapter.title}
+                        </h3>
+                        <p className="text-xs font-semibold text-zinc-500">
+                          Páginas {chapter.pageRange} · {doneCount}/{chapter.lessons.length} lições
+                          concluídas
+                        </p>
+                      </div>
                     </div>
-                    {doneAll ? (
-                      <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
-                    ) : (
-                      <ArrowRight className="h-4 w-4 shrink-0 text-zinc-400" />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
+                  </div>
+                  <p className="mt-3 text-sm font-medium text-zinc-600">{chapter.description}</p>
+                </div>
+
+                <div className="divide-y divide-[#F2EFE8]">
+                  {chapter.lessons.map((lesson) => {
+                    const isDone = progress.completedLessonIds.includes(lesson.id);
+                    const isNext = nextSuggested?.lesson.id === lesson.id;
+                    return (
+                      <div
+                        key={lesson.id}
+                        className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-6 py-4 transition hover:bg-[#FCFBF8]"
+                      >
+                        <div className="min-w-0">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="font-display text-xs font-extrabold text-blue-700">
+                              Lição {lesson.number}
+                            </span>
+                            <span className="inline-flex items-center gap-1 text-xs font-semibold text-zinc-500">
+                              <Clock className="h-3 w-3" />
+                              {lesson.estimatedMinutes} min
+                            </span>
+                            {isDone && (
+                              <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-bold text-emerald-700">
+                                <CheckCircle2 className="h-3 w-3" />
+                                Concluída
+                              </span>
+                            )}
+                            {isNext && !isDone && (
+                              <span className="rounded-full bg-blue-50 px-2 py-0.5 text-[11px] font-bold text-blue-700">
+                                Próxima sugerida
+                              </span>
+                            )}
+                          </div>
+                          <h4 className="mt-0.5 font-display text-base font-extrabold text-[#111827]">
+                            {lesson.title}
+                          </h4>
+                          <p className="mt-0.5 text-sm font-medium text-zinc-600">
+                            {lesson.summary}
+                          </p>
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => onOpenLesson(chapter, lesson)}
+                          className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-xl bg-[#18181B] px-4 py-2.5 font-display text-xs font-bold text-white transition hover:bg-blue-700"
+                        >
+                          <Play className="h-3.5 w-3.5 fill-current" />
+                          <span>Abrir</span>
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Upcoming chapters (clean list, no lock, no technical CLI hints) */}
+      {upcomingChapters.length > 0 && (
+        <section className="space-y-3">
+          <div>
+            <h2 className="font-display text-base font-extrabold text-[#111827]">
+              Próximos Capítulos (Em breve)
+            </h2>
+            <p className="text-xs font-medium text-zinc-500">
+              Restante da ementa Huawei HCIA-Datacom V2.0 que será adicionada em seguida.
+            </p>
+          </div>
+          <div className="grid gap-2.5 sm:grid-cols-2">
+            {upcomingChapters.map((ch) => (
+              <div
+                key={ch.id}
+                className="flex items-center justify-between gap-3 rounded-2xl border border-[#ECE7DD] bg-white/80 px-4 py-3"
+              >
+                <div className="flex min-w-0 items-center gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-stone-100 font-display text-xs font-extrabold text-stone-600">
+                    {String(ch.number).padStart(2, "0")}
+                  </span>
+                  <div className="min-w-0">
+                    <p className="truncate font-display text-xs font-bold text-zinc-800">
+                      {ch.title}
+                    </p>
+                    <p className="text-[11px] font-medium text-zinc-500">Págs. {ch.pageRange}</p>
+                  </div>
+                </div>
+                <span className="shrink-0 rounded-full bg-stone-100 px-2.5 py-0.5 text-[11px] font-bold text-stone-600">
+                  Em breve
+                </span>
+              </div>
+            ))}
           </div>
         </section>
-      </main>
+      )}
     </div>
   );
 };

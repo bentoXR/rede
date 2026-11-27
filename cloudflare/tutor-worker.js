@@ -9,6 +9,26 @@ const CORS_HEADERS = {
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
+const MODELS = ["gemini-3.8-flash", "gemini-3.1-flash-lite"];
+
+async function callGemini(modelId, apiKey, systemContext, contents) {
+  return fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${modelId}:generateContent?key=${encodeURIComponent(apiKey)}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: systemContext }] },
+        contents,
+        generationConfig: {
+          temperature: 0.3,
+          maxOutputTokens: 450,
+        },
+      }),
+    }
+  );
+}
+
 export default {
   async fetch(request, env) {
     if (request.method === "OPTIONS") {
@@ -25,30 +45,25 @@ export default {
     }
 
     try {
-      const { systemContext, history = [], question } = await request.json();
+      const { systemContext = "", history = [], question = "" } = await request.json();
+      const trimmedContext = String(systemContext).slice(0, 2800);
+      const recentHistory = Array.isArray(history) ? history.slice(-6) : [];
+
       const contents = [
-        ...history.map((m) => ({
+        ...recentHistory.map((m) => ({
           role: m.role === "assistant" ? "model" : "user",
-          parts: [{ text: m.content }],
+          parts: [{ text: String(m.content || "").slice(0, 1200) }],
         })),
-        { role: "user", parts: [{ text: question }] },
+        { role: "user", parts: [{ text: String(question).slice(0, 1200) }] },
       ];
 
-      const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(env.GEMINI_API_KEY)}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            systemInstruction: { parts: [{ text: systemContext || "" }] },
-            contents,
-            generationConfig: {
-              temperature: 0.4,
-              maxOutputTokens: 700,
-            },
-          }),
+      let res = null;
+      for (const modelId of MODELS) {
+        res = await callGemini(modelId, env.GEMINI_API_KEY, trimmedContext, contents);
+        if (res.ok || (res.status !== 503 && res.status !== 429)) {
+          break;
         }
-      );
+      }
 
       if (!res.ok) {
         const text = await res.text();
@@ -58,7 +73,7 @@ export default {
       const data = await res.json();
       const reply =
         data.candidates?.[0]?.content?.parts?.map((p) => p.text || "").join("") ||
-        "No reply generated.";
+        "Nenhuma resposta gerada.";
 
       return Response.json({ reply }, { headers: CORS_HEADERS });
     } catch (err) {

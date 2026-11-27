@@ -6,9 +6,9 @@ import type {
   LanguagePref,
   UserProgress,
 } from "../types/progress";
+import { APP_CONFIG } from "./appConfig";
 
 const PROGRESS_KEY = "hcia_studio_progress_v1";
-const SETTINGS_KEY = "hcia_studio_cloud_settings_v1";
 
 export function todayIsoDate(): string {
   const d = new Date();
@@ -194,35 +194,47 @@ export function updateTypographyPref(
   };
 }
 
-export function loadCloudSettings(): CloudSettings {
-  const envSupabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? "";
-  const envSupabaseKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined) ?? "";
-  const envTutorUrl = (import.meta.env.VITE_TUTOR_API_URL as string | undefined) ?? "";
-  try {
-    const raw = localStorage.getItem(SETTINGS_KEY);
-    const parsed = raw ? (JSON.parse(raw) as Partial<CloudSettings>) : {};
-    return {
-      supabaseUrl: parsed.supabaseUrl || envSupabaseUrl,
-      supabaseAnonKey: parsed.supabaseAnonKey || envSupabaseKey,
-      tutorWorkerUrl: parsed.tutorWorkerUrl || envTutorUrl,
-      geminiApiKey: parsed.geminiApiKey || "",
-    };
-  } catch {
-    return {
-      supabaseUrl: envSupabaseUrl,
-      supabaseAnonKey: envSupabaseKey,
-      tutorWorkerUrl: envTutorUrl,
-      geminiApiKey: "",
-    };
-  }
+export function markLessonCompleted(
+  progress: UserProgress,
+  lessonId: string,
+  allLessonStepIds: string[]
+): UserProgress {
+  const completedSet = new Set(progress.completedStepIds);
+  for (const id of allLessonStepIds) completedSet.add(id);
+  const completedLessons = new Set(progress.completedLessonIds);
+  completedLessons.add(lessonId);
+  return bumpStreak({
+    ...progress,
+    completedStepIds: Array.from(completedSet),
+    completedLessonIds: Array.from(completedLessons),
+    lastVisitedLessonId: lessonId,
+  });
 }
 
-export function saveCloudSettings(settings: CloudSettings): void {
-  try {
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
-  } catch {
-    // Ignore storage errors
+export function toggleLessonCompleted(
+  progress: UserProgress,
+  lessonId: string,
+  allLessonStepIds: string[]
+): UserProgress {
+  const isDone = progress.completedLessonIds.includes(lessonId);
+  if (!isDone) {
+    return markLessonCompleted(progress, lessonId, allLessonStepIds);
   }
+  const removeSet = new Set(allLessonStepIds);
+  return {
+    ...progress,
+    completedStepIds: progress.completedStepIds.filter((id) => !removeSet.has(id)),
+    completedLessonIds: progress.completedLessonIds.filter((id) => id !== lessonId),
+  };
+}
+
+export function loadCloudSettings(): CloudSettings {
+  return {
+    supabaseUrl: APP_CONFIG.supabaseUrl,
+    supabaseAnonKey: APP_CONFIG.supabaseAnonKey,
+    tutorWorkerUrl: APP_CONFIG.tutorWorkerUrl,
+    geminiApiKey: "",
+  };
 }
 
 export function mergeUserProgress(local: UserProgress, remote: UserProgress): UserProgress {

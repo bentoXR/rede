@@ -5,6 +5,26 @@ import { mergeUserProgress } from "./storage";
 let cachedClient: SupabaseClient | null = null;
 let cachedKey = "";
 
+function translateAuthError(message: string): string {
+  const lower = message.toLowerCase();
+  if (lower.includes("invalid login credentials")) {
+    return "E-mail ou senha incorretos.";
+  }
+  if (lower.includes("user already registered")) {
+    return "Este e-mail já possui uma conta. Tente entrar.";
+  }
+  if (lower.includes("email not confirmed")) {
+    return "Confirme seu e-mail antes de entrar (verifique sua caixa de entrada).";
+  }
+  if (lower.includes("password should be at least")) {
+    return "A senha deve ter pelo menos 6 caracteres.";
+  }
+  if (lower.includes("unable to validate email address") || lower.includes("invalid email")) {
+    return "Digite um endereço de e-mail válido.";
+  }
+  return message;
+}
+
 export function getSupabaseClient(settings: CloudSettings): SupabaseClient | null {
   const url = settings.supabaseUrl.trim();
   const key = settings.supabaseAnonKey.trim();
@@ -32,35 +52,43 @@ export async function getCurrentUser(settings: CloudSettings): Promise<User | nu
   return data.user ?? null;
 }
 
-export async function signInWithMagicLink(
+export async function signInWithPassword(
   settings: CloudSettings,
-  email: string
+  email: string,
+  password: string
 ): Promise<{ ok: boolean; message: string }> {
   const client = getSupabaseClient(settings);
   if (!client) {
-    return { ok: false, message: "Configure a URL e a Anon Key do Supabase primeiro." };
+    return { ok: false, message: "Serviço de sincronização indisponível." };
   }
-  const { error } = await client.auth.signInWithOtp({
-    email,
-    options: { emailRedirectTo: window.location.href },
-  });
-  if (error) return { ok: false, message: error.message };
-  return { ok: true, message: "Link mágico enviado! Verifique seu e-mail para entrar." };
+  const { error } = await client.auth.signInWithPassword({ email, password });
+  if (error) return { ok: false, message: translateAuthError(error.message) };
+  return { ok: true, message: "Conectado com sucesso!" };
 }
 
-export async function signInWithGoogle(
-  settings: CloudSettings
-): Promise<{ ok: boolean; message: string }> {
+export async function signUpWithPassword(
+  settings: CloudSettings,
+  email: string,
+  password: string
+): Promise<{ ok: boolean; needsConfirmation?: boolean; message: string }> {
   const client = getSupabaseClient(settings);
   if (!client) {
-    return { ok: false, message: "Configure a URL e a Anon Key do Supabase primeiro." };
+    return { ok: false, message: "Serviço de sincronização indisponível." };
   }
-  const { error } = await client.auth.signInWithOAuth({
-    provider: "google",
-    options: { redirectTo: window.location.href },
+  const { data, error } = await client.auth.signUp({
+    email,
+    password,
+    options: { emailRedirectTo: window.location.href },
   });
-  if (error) return { ok: false, message: error.message };
-  return { ok: true, message: "Redirecionando para o Google..." };
+  if (error) return { ok: false, message: translateAuthError(error.message) };
+  if (!data.session) {
+    return {
+      ok: true,
+      needsConfirmation: true,
+      message: "Conta criada! Verifique seu e-mail para confirmar o cadastro e depois entre.",
+    };
+  }
+  return { ok: true, message: "Conta criada e conectada!" };
 }
 
 export async function signOutCloud(settings: CloudSettings): Promise<void> {
@@ -75,7 +103,7 @@ export async function syncProgressWithCloud(
 ): Promise<{ ok: boolean; merged?: UserProgress; message: string }> {
   const client = getSupabaseClient(settings);
   if (!client) {
-    return { ok: false, message: "Supabase não configurado." };
+    return { ok: false, message: "Sincronização indisponível." };
   }
   const { data: userData } = await client.auth.getUser();
   const user = userData.user;
@@ -110,5 +138,5 @@ export async function syncProgressWithCloud(
     return { ok: false, message: upsertErr.message };
   }
 
-  return { ok: true, merged, message: "Sincronizado com sucesso entre a nuvem e o navegador." };
+  return { ok: true, merged, message: "Progresso sincronizado com sucesso." };
 }

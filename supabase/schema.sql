@@ -11,15 +11,15 @@ alter table public.hcia_user_progress enable row level security;
 create policy "Users can view their own HCIA progress"
   on public.hcia_user_progress
   for select
-  using (auth.uid() = user_id);
+  using ((select auth.uid()) = user_id);
 
 create policy "Users can insert their own HCIA progress"
   on public.hcia_user_progress
   for insert
-  with check (auth.uid() = user_id);
+  with check ((select auth.uid()) = user_id);
 
 create policy "Users can update their own HCIA progress"
   on public.hcia_user_progress
   for update
-  using (auth.uid() = user_id)
-  with check (auth.uid() = user_id);
+  using ((select auth.uid()) = user_id)
+  with check ((select auth.uid()) = user_id);

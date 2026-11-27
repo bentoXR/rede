@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AlertCircle, Bookmark, Highlighter, Play, Trash2, X } from "lucide-react";
+import { AlertCircle, Bookmark, Highlighter, Trash2, X } from "lucide-react";
 import type { ChapterData, LessonData, StudyStep } from "../types/content";
 import type { LanguagePref, UserProgress } from "../types/progress";
 import { t } from "../i18n/ui";
@@ -10,8 +10,7 @@ interface ReviewVaultModalProps {
   chapters: ChapterData[];
   progress: UserProgress;
   lang: LanguagePref;
-  onStartReviewSession: () => void;
-  onJumpToStep: (chapter: ChapterData, lesson: LessonData, stepIndex: number) => void;
+  onJumpToStep: (chapter: ChapterData, lesson: LessonData, stepId: string) => void;
   onRemoveBookmark: (stepId: string) => void;
   onRemoveHighlight: (highlightId: string) => void;
 }
@@ -22,7 +21,6 @@ export const ReviewVaultModal: React.FC<ReviewVaultModalProps> = ({
   chapters,
   progress,
   lang,
-  onStartReviewSession,
   onJumpToStep,
   onRemoveBookmark,
   onRemoveHighlight,
@@ -49,9 +47,6 @@ export const ReviewVaultModal: React.FC<ReviewVaultModalProps> = ({
     .filter(([, r]) => r.needsReview)
     .map(([id]) => stepLookup.get(id))
     .filter(Boolean);
-
-  const totalItems =
-    progress.bookmarkedStepIds.length + progress.highlights.length + missedEntries.length;
 
   return (
     <div
@@ -119,20 +114,6 @@ export const ReviewVaultModal: React.FC<ReviewVaultModalProps> = ({
               </span>
             </button>
           </div>
-
-          {totalItems > 0 && (
-            <button
-              type="button"
-              onClick={() => {
-                onClose();
-                onStartReviewSession();
-              }}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-blue-600 px-3.5 py-1.5 font-display text-xs font-bold text-white hover:bg-blue-700"
-            >
-              <Play className="h-3.5 w-3.5 fill-current" />
-              <span>{ui.practiceAll}</span>
-            </button>
-          )}
         </div>
 
         <div className="flex-1 space-y-2.5 overflow-y-auto p-6">
@@ -156,7 +137,7 @@ export const ReviewVaultModal: React.FC<ReviewVaultModalProps> = ({
                       type="button"
                       onClick={() => {
                         onClose();
-                        onJumpToStep(hit.chapter, hit.lesson, hit.idx);
+                        onJumpToStep(hit.chapter, hit.lesson, hit.step.id);
                       }}
                       className="min-w-0 flex-1 text-left"
                     >
@@ -199,7 +180,7 @@ export const ReviewVaultModal: React.FC<ReviewVaultModalProps> = ({
                         onClick={() => {
                           if (!hit) return;
                           onClose();
-                          onJumpToStep(hit.chapter, hit.lesson, hit.idx);
+                          onJumpToStep(hit.chapter, hit.lesson, hit.step.id);
                         }}
                         className="text-xs font-bold text-blue-700 hover:underline"
                       >
@@ -235,7 +216,7 @@ export const ReviewVaultModal: React.FC<ReviewVaultModalProps> = ({
                     type="button"
                     onClick={() => {
                       onClose();
-                      onJumpToStep(hit.chapter, hit.lesson, hit.idx);
+                      onJumpToStep(hit.chapter, hit.lesson, hit.step.id);
                     }}
                     className="block w-full rounded-2xl border border-rose-200 bg-white p-4 text-left hover:border-rose-400"
                   >
